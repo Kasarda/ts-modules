@@ -62,10 +62,14 @@ ${chalk.cyan.underline('\t Application is creating')}
       console.log(`
 \t${chalk.cyan.underline('Let\'s get started')}
 \t${chalk.green('Step 1: cd into the newly created ' + chalk.cyan.underline(appName) + ' directory')}
-\t${chalk.green('Step 2: run ' + chalk.cyan.underline('$ modular serve'))}
-\t${chalk.green('Step 3: run ' + chalk.cyan.underline('$ modular open <editor>'))}
+\t${chalk.green('Step 2: run ' + chalk.cyan.underline('$ modular open <editor>'))}
+\t${chalk.green('Step 3: run ' + chalk.cyan.underline('$ modular serve'))}
 \t${chalk.green('Step 4: run ' + chalk.cyan.underline('$ modular build'))}
-\t${chalk.green('Step 5: Enjoy')}
+\t${chalk.green('Step 5: run ' + chalk.cyan.underline('$ modular component <name_of_component> <options>'))}
+        options: 
+          !css -> not css 
+          in=<path_in_app> -> parent of new component e.g. in=about 
+\t${chalk.green('Step 6: Enjoy')}
 ----------------------------------------------------------`)
 
     })

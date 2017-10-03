@@ -31,7 +31,6 @@ function component (args) {
         })
         const component_upper = component.replace(/./, m => m.toUpperCase())
         const app_path = path.join(url, 'src', 'app', sub_path)
-        console.log(sub_path, app_path )
         const component_path = path.join(app_path, component_upper)
         const component_ts_path = path.join(component_path, `${component_upper}.component.tsx`)
         const component_css_path = path.join(component_path, `${component_upper}.sass`)
