@@ -7,7 +7,7 @@ import {
     Component,
     React,
     ReactDOM
-} from '@modules/react'
+} from 'ts-modules/react'
 
 
 
@@ -24,7 +24,7 @@ export default class ${component.replace(/./, m => m.toUpperCase())} extends Com
 }`
     }
     else if(type === 'css') {
-        let sass_lib = ext === 'sass' ? '@import "../../../node_modules/@modules/lib"' : ''
+        let sass_lib = ext === 'sass' ? '@import "../../../node_modules/ts-modules/lib"' : ''
 
         return `${sass_lib}
         
