@@ -1,11 +1,21 @@
 {
-    "name": "ts-modules",
-    "description": "Typescript and SASS modules for modular react environment and CLI",
-    "version": "1.2.0",
-    "author": "Filip Kasarda <fkasarda@gmail.com>",
-    "license": "MIT",
-    "main": "./app.js",
-    "bin": {
-        "modular": "./cli/modular.js"
-    }
+  "name": "ts-modules",    
+  "version": "2.0.0",
+  "main": "app.js",
+  "bin": {
+    "modular": "bin/cli.js"
+  },
+  "author": "Filip Kasarda <fkasarda@gmail.com>",
+  "description": "Typescript and SASS modules for modular react environment and CLI",
+  "scripts": {
+    "build-source": "node bin/build.js"
+  },
+  "repository": "",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^1.1.3",
+    "commander": "^2.9.0",
+    "cross-spawn": "^5.1.0",
+    "shelljs": "^0.7.7"
+  }
 }
