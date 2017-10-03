@@ -1,0 +1,11 @@
+{
+    "name": "ts-modules",
+    "description": "Typescript and SASS modules for modular react environment and CLI",
+    "version": "1.1.1",
+    "author": "Filip Kasarda <fkasarda@gmail.com>",
+    "license": "MIT",
+    "main": "./app.js",
+    "bin": {
+        "modular": "./cli/modular.js"
+    }
+}

@@ -1,0 +1,244 @@
+@charset "UTF-8"
+
+$xl: 1200px
+$lg: 992px
+$md: 768px
+$sm: 576px
+
+$PI: 3.141592653589793
+$E: 2.718281828459045
+
+
+=face($font-name, $file-name, $weight: normal, $style: normal)
+  @font-face
+    font-family: quote($font-name)
+    src: url($file-name + '.eot')
+    src: url($file-name + '.eot?#iefix') format('embedded-opentype'),url($file-name + '.woff') format('woff'),url($file-name + '.ttf')  format('truetype'),url($file-name + '.svg##$font-name')  format('svg')
+    font-weight: $weight
+    font-style: $style
+
+
+
+=center($position:both)
+  position: absolute
+
+  @if $position == y
+    top: 50%
+    transform: translateY(-50%)
+
+  @else if $position == x
+    left: 50%
+    transform: translate(-50%)
+
+  @else
+    top: 50%
+    left: 50%
+    transform: translate(-50%, -50%)
+
+
+=foreground($size: false, $color: false, $weight: false, $lineHeight: false, $style: false)
+  @if $size
+    font-size: $size
+  @if $color
+    color: $color
+  @if $weight
+    font-weight: $weight
+  @if $lineHeight
+    line-height: $lineHeight
+  @if $style
+    font-style: $style
+
+=dimension($w: 100%, $h: same)
+  @if $w
+    @if not $h
+      width: $w
+    @else if $h == same
+      width: $w
+      height: $w
+    @else 
+      width: $w
+      height: $h
+  @else
+    @if $h and $h != same
+      height: $h
+    
+
+@function _isPosition($val)
+  @return  $val == static or $val == absolute or $val == relative or $val == fixed or $val == sticky
+
+@function _isNotPosition($val)
+  @return  $val != static and $val != absolute and $val != relative and $val != fixed and $val != sticky
+
+
+=position($t: false, $l: false, $b: false, $r: false, $pos: relative)
+  $position: $pos
+  
+  @if _isPosition($t)
+    $position: $t
+  @else if _isPosition($l)
+    $position: $l
+  @else if _isPosition($b)
+    $position: $b
+  @else if _isPosition($r)
+    $position: $r
+
+  position: $position
+
+  @if $t and _isNotPosition($t)
+    top: $t
+  @else if (not $t) and ($b and _isNotPosition($b))
+    bottom: $b
+
+  @if $l and _isNotPosition($l)
+    left: $l
+  @else if (not $l) and ($r and _isNotPosition($r))
+    right: $r
+
+
+
+=min($point)
+  $width: $point
+  @if $point == xl
+    $width: $xl
+  @else if $point == lg
+    $width: $lg
+  @else if $point == md
+    $width: $md
+  @else if $point == sm
+    $width: $sm
+
+  @media (min-width: $width)
+    @content
+
+=max($point)
+
+  $width: $point
+  @if $point == xs
+    $width: $sm - 1
+  @else if $point == sm
+    $width: $md - 1
+  @else if $point == md
+    $width: $lg - 1
+  @else if $point == lg
+    $width: $xl - 1
+
+  @media (max-width: $width)
+    @content
+
+
+
+=only($point, $custom:null)
+  $min: $point
+  $max: $custom
+
+  @if $point == sm
+    $min: $sm
+    $max: $md - 1
+  @else if $point == md
+    $min: $md
+    $max: $lg - 1
+  @else if $point == lg
+    $min: $lg
+    $max: $xl - 1
+
+  @if $point == xs
+    @media (max-width: $sm - 1)
+      @content
+
+  @else if $point == xl
+    @media (min-width: $xl)
+      @content
+
+  @else
+    @media (min-width: $min) and (max-width: $max)
+      @content
+
+
+
+
+=retina($file-1x: null, $file-2x: null, $width-1x: null, $height-1x: null)
+  @if $file-1x != null
+    background-image: url($file-1x)
+  @media only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx)
+    @if $file-2x != null
+      background-image: url($file-2x)
+    @if $width-1x != null and $height-1x != null
+      background-size: $width-1x $height-1x
+    @content
+
+
+
+=gradient-x($start-color: #555, $end-color: #333, $start-percent: 0%, $end-percent: 100%)
+  background-image: linear-gradient(to right, $start-color $start-percent, $end-color $end-percent)
+  background-repeat: repeat-x
+
+=gradient-y($start-color: #555, $end-color: #333, $start-percent: 0%, $end-percent: 100%)
+  background-image: linear-gradient(to bottom, $start-color $start-percent, $end-color $end-percent)
+  background-repeat: repeat-x
+
+=gradient-directional($start-color: #555, $end-color: #333, $deg: 45deg)
+  background-repeat: repeat-x
+  background-image: linear-gradient($deg, $start-color, $end-color)
+
+=gradient-x-three-colors($start-color: #00b3ee, $mid-color: #7a43b6, $color-stop: 50%, $end-color: #c3325f)
+  background-image: linear-gradient(to right, $start-color, $mid-color $color-stop, $end-color)
+  background-repeat: no-repeat
+
+=gradient-y-three-colors($start-color: #00b3ee, $mid-color: #7a43b6, $color-stop: 50%, $end-color: #c3325f)
+  background-image: linear-gradient($start-color, $mid-color $color-stop, $end-color)
+  background-repeat: no-repeat
+
+=gradient-radial($inner-color: #555, $outer-color: #333)
+  background-image: radial-gradient(circle, $inner-color, $outer-color)
+  background-repeat: no-repeat
+
+=gradient-striped($color: rgba(255,255,255,.15), $angle: 45deg)
+  background-image: linear-gradient($angle, $color 25%, transparent 25%, transparent 50%, $color 50%, $color 75%, transparent 75%, transparent)
+
+
+
+
+@function pow($number, $exp)
+  $value: 1
+  @if $exp > 0
+    @for $i from 1 through $exp
+      $value: $value * $number
+
+
+  @else if $exp < 0
+    @for $i from 1 through -$exp
+      $value: $value / $number
+
+
+  @return $value
+
+
+
+@function fact($number)
+  $value: 1
+  @if $number > 0
+    @for $i from 1 through $number
+      $value: $value * $i
+
+
+  @return $value
+
+
+
+
+@function sin($angle)
+  $sin: 0
+  $angle: rad($angle)
+  @for $i from 0 through 10
+    $sin: $sin + pow(-1, $i) * pow($angle, (2 * $i + 1)) / fact(2 * $i + 1)
+
+  @return $sin
+
+
+@function cos($angle)
+  $cos: 0
+  $angle: rad($angle)
+  @for $i from 0 through 10
+    $cos: $cos + pow(-1, $i) * pow($angle, 2 * $i) / fact(2 * $i)
+
+  @return $cos 
