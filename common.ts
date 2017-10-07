@@ -9,7 +9,7 @@
 /**
   *
   * @function unique
-  * Get new unique array from @param array param
+  * Get new unique array from @param array
   *
 */
 

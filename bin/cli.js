@@ -7,7 +7,7 @@ const chalk = require('chalk')
 const spawn = require('cross-spawn')
 const package = require('../package.json')
 const build = require('./build')
-const command = require('./shouldUseYarn')()
+const command = require('./manager')()
 
 program.version(package.version).usage('<keywords>').parse(process.argv)
 

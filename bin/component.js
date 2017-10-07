@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const fs = require('fs')
 const path = require('path')
 const template = require('./template')
@@ -6,14 +8,14 @@ const chalk = require('chalk')
 const url = process.cwd()
 
 
-function createFile(p, temp, component_path){
+function createFile(p, temp){
     fs.writeFile(p, temp, err => {
         if(err) {
-            console.log(chalk.red(`Cannot create ${chalk.red.underline(component_path.replace(url, ''))}`), err)
+            console.log(chalk.red(`Cannot create ${chalk.red.underline(p.replace(url, ''))}`), err)
             return
         }
 
-        console.log(chalk.green('\t+ '), chalk.cyan.underline(component_path.replace(url, '')), chalk.green(' was created'))
+        console.log(chalk.green('\t+ '), chalk.cyan.underline(p.replace(url, '')), chalk.green(' was created'))
     })
 }
 
@@ -49,10 +51,10 @@ function component (args) {
 
                 const inludes_css = !args.includes('!css') 
 
-                createFile(component_ts_path, template.typescript(component_upper, inludes_css), component_ts_path)
+                createFile(component_ts_path, template.typescript(component_upper, inludes_css))
 
                 if ( inludes_css )
-                    createFile(component_css_path, template.css(component_upper), component_css_path)
+                    createFile(component_css_path, template.css(component_upper))
             })
         }
 

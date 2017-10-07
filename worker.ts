@@ -7,14 +7,53 @@
  * 
  */
 
+
 export interface WebWorkerInterface {
     worker: any
     terminated: boolean
     sended: string[]
     readed: string[]
+
+    /**
+     * 
+     * @method send
+     * @description Send data to worker or from worker to normal process, filtering by name param
+     * @param name -> name of the message
+     * @param data -> data to send
+     * 
+     */
     send(name: string, data: any): WebWorkerInterface
+
+
+
+    /**
+     * 
+     * @method read
+     * @description Read data from send method
+     * @param name -> name of the sended message
+     * @param callback -> callback includes data and event
+     * 
+     */
     read(name: string, callback: (data?: any, event?: Event) => void): WebWorkerInterface
+
+
+    /**
+     * 
+     * @method failed
+     * @description Trigger all worker error event
+     * @param listener 
+     * 
+     */
     failed(callback: (event?: Event) => void): WebWorkerInterface
+
+
+    /**
+     * 
+     * @method terminate
+     * @description Terminate worker
+     * Only works with normal process
+     * 
+     */
     terminate(): WebWorkerInterface
 }
 
@@ -45,12 +84,12 @@ export class WebWorker implements WebWorkerInterface  {
     })
         return this
     }
-    failed(callback: (event: Event) => void): WebWorkerInterface{
-        this.worker.addEventListener('error', function(event) {
-            callback.call(this, event)
-        })
+
+    failed(listener: (event: Event) => void): WebWorkerInterface{
+        this.worker.addEventListener('error', listener)
         return this
     }
+
     terminate(): WebWorkerInterface{
         if(this.worker.terminate){
             this.worker.terminate()

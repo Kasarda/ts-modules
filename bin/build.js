@@ -5,7 +5,7 @@ const path = require('path')
 const fs = require('fs')
 const chalk = require('chalk')
 const spawn = require('cross-spawn')
-const command = require('./shouldUseYarn')()
+const command = require('./manager')()
 
 
 const installPackages = () => {

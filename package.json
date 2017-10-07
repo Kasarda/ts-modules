@@ -1,21 +1,36 @@
 {
   "name": "ts-modules",    
-  "version": "2.0.1",
-  "main": "app.js",
+  "version": "2.0.2",
+  "author": {
+    "name": "Filip Kasarda",
+    "email": "fkasarda@gmail.com"
+  },   
+  "license": "GPL-3.0",    
+  "description": "Typescript, Sass modules and CLI for Modular environment for react. Only works with Modular",
+  "keywords": [
+    "react",
+    "modular",
+    "animejs",
+    "webpack",
+    "ts-modules",
+    "sass",
+    "cli"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fazulkovy/ts-modules.git"
+  },
+  "main": "./app.js",    
   "bin": {
     "modular": "bin/cli.js"
-  },
-  "author": "Filip Kasarda <fkasarda@gmail.com>",
-  "description": "Typescript and SASS modules for modular react environment and CLI",
+  },  
   "scripts": {
     "build-source": "node bin/build.js"
   },
-  "repository": "",
-  "license": "MIT",
   "dependencies": {
-    "chalk": "^1.1.3",
-    "commander": "^2.9.0",
+    "chalk": "^2.1.0",
+    "commander": "^2.11.0",
     "cross-spawn": "^5.1.0",
-    "shelljs": "^0.7.7"
+    "shelljs": "^0.7.8"
   }
 }
