@@ -5,83 +5,94 @@ const path = require('path')
 const fs = require('fs')
 const chalk = require('chalk')
 const spawn = require('cross-spawn')
-const command = require('./manager')()
+const manager = require('./manager')()
+const package = require('../package.json')
+const repo = 'https://github.com/fazulkovy/modular.git'
 
 
-const installPackages = () => {
-  console.log(chalk.white.bold('Installing Packages'))
+function executeCommand(command){
+
+  const commands = command.split(' ')
+  const options = commands.filter((v,i) => i !== 0)
+
   return new Promise((resolve, reject) => {
 
-    let args = ['install']
-
-
-    
-    const child = spawn(command, args, { stdio: 'inherit' })
+    const child = spawn(commands[0], options, { stdio: 'inherit' })
 
     child.on('close', code => {
       if (code !== 0) {
-        reject({
-          command: `${command} ${args.join(' ')}`
-        })
+        reject({command})
         return
       }
       resolve()
     })
+
   })
+
 }
 
-const build = (appName) => {
-  cp('-r', __dirname + '/../src/.', appName)
 
-  console.log(`----------------------------------------------------------
-${chalk.inverse('\tWelcome to Modular CLI')}
+
+function getFilesList(dir, filelist) {
+  files = fs.readdirSync(dir)
+  filelist = filelist || []
+  files.forEach(function (file) {
+    if (fs.statSync(path.join(dir, file)).isDirectory() && !file.includes('node_modules') && !file.includes('.git') && !file.includes('dist'))
+      filelist = getFilesList(path.join(dir, file), filelist)
+    else
+      filelist.push(path.join(dir, file))
+  })
+  return filelist
+}
+
+
+
+
+
+module.exports = appName => {
+
+  const help_log = `${chalk.reset()}----------------------------------------------------------
+${chalk.cyan(`\tWelcome to Modular CLI \n\tversion ${package.version}`)}
 ----------------------------------------------------------
-${chalk.cyan.underline('\t Application is creating')}
-`)
+
+\t - ${chalk.cyan(`cd into new created application ${chalk.underline(appName)}`)}
+
+\t - ${chalk.cyan('$ modular init <folder>')} ${chalk.gray(' -> Clone application and install all packages into <folder>')}
+\t - ${chalk.cyan('$ modular open ?[<editor>]')} ${chalk.gray(' -> Open actual directive in editor, default is vs code')}
+\t - ${chalk.cyan('$ modular serve')} ${chalk.gray(' -> Serving application')}
+\t - ${chalk.cyan('$ modular build')} ${chalk.gray(' -> Create production')}
+\t - ${chalk.cyan('$ modular test')} ${chalk.gray(' -> Run mocha testing')}
+\t - ${chalk.cyan('$ modular version')} ${chalk.gray(' -> Get version of CLI')}
+\t - ${chalk.cyan('$ modular component <name> ?[<options>]')} ${chalk.gray(' -> Generate react component with css')}
+\t\t -  ${chalk.cyan('?[<options>]')}
+\t\t\t - ${chalk.cyan('!css')} ${chalk.gray(' -> Generated component will be without css')}
+\t\t\t - ${chalk.cyan('in=<path>')} ${chalk.gray(' -> Generated component will be inside this path, default is ./')}
+\t\t\t ${chalk.cyan('example: $ modular component phone in=contact !css')}
+\t - ${chalk.cyan('$ modular install')} ${chalk.gray(' -> Install packages')}
+\t - ${chalk.cyan('$ modular <other_options>')} ${chalk.gray(' -> Show documentation')}
+
+\t ${chalk.gray('Created by Filip Kasarda')}${chalk.reset()}
+`
 
 
-  const createFiles = new Promise((resolve, reject) => {
-    fs.readdir(path.join(__dirname, '../src'), (err, files) => {
-      if (err) {
-        reject(err)
-        return
-      }
-      files.forEach(file => console.log(chalk.green('\t+ ' + file)))
-      resolve()
-    })
-  })
 
+  console.log(chalk.cyan.underline('\t Application is creating'))
 
+  executeCommand(`git clone ${repo} ${appName}`).then(() => {
 
-  createFiles.then(_ => {
+    const app_dir = path.join(process.cwd(), appName)
+    const list = getFilesList(app_dir, [])
+
+    list.forEach(file => console.log(chalk.green(`\t+ ${file.replace(app_dir, '')}`)))
+
     console.log(chalk.cyan.underline('\n\t Installing packages ...'))
+
     cd(appName)
-    installPackages().then(() => {
- 
-
-      console.log(`
-\t${chalk.cyan.underline('Let\'s get started')}
-\t${chalk.green('Step 1: cd into the newly created ' + chalk.cyan.underline(appName) + ' directory')}
-\t${chalk.green('Step 2: run ' + chalk.cyan.underline('$ modular open <editor>'))}
-\t${chalk.green('Step 3: run ' + chalk.cyan.underline('$ modular serve'))}
-\t${chalk.green('Step 4: run ' + chalk.cyan.underline('$ modular build'))}
-\t${chalk.green('Step 5: run ' + chalk.cyan.underline('$ modular component <name_of_component> <options>'))}
-        options: 
-          !css -> not css 
-          in=<path_in_app> -> parent of new component e.g. in=about 
-\t${chalk.green('Step 6: Enjoy')}
-----------------------------------------------------------`)
-
-    })
-      .catch(error => {
-        console.log(chalk.red('An unexpected error occurred'))
-        console.log(chalk.red(error))
-      })
+    executeCommand(`${manager} install`).then(() => {
+      console.log(help_log)
+    }).catch(err => console.log(chalk.red('An unexpected error occurred\n'), err))
 
   })
-    .catch(err => { throw err })
 
 
 }
-
-module.exports = build

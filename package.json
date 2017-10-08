@@ -1,11 +1,11 @@
 {
-  "name": "ts-modules",    
-  "version": "2.0.2",
+  "name": "ts-modules",
+  "version": "2.1.0",
   "author": {
     "name": "Filip Kasarda",
     "email": "fkasarda@gmail.com"
-  },   
-  "license": "GPL-3.0",    
+  },
+  "license": "GPL-3.0",
   "description": "Typescript, Sass modules and CLI for Modular environment for react. Only works with Modular",
   "keywords": [
     "react",
@@ -20,10 +20,10 @@
     "type": "git",
     "url": "https://github.com/fazulkovy/ts-modules.git"
   },
-  "main": "./app.js",    
+  "main": "./app.js",
   "bin": {
     "modular": "bin/cli.js"
-  },  
+  },
   "scripts": {
     "build-source": "node bin/build.js"
   },
