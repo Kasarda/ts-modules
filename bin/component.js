@@ -7,15 +7,14 @@ const chalk = require('chalk')
 
 const url = process.cwd()
 
-
 function createFile(p, temp){
     fs.writeFile(p, temp, err => {
         if(err) {
-            console.log(chalk.red(`Cannot create ${chalk.red.underline(p.replace(url, ''))}`), err)
+            console.log(chalk.reset.red(`Cannot create ${chalk.red.underline(p.replace(url, ''))}`), err)
             return
         }
 
-        console.log(chalk.green('\t+ '), chalk.cyan.underline(p.replace(url, '')), chalk.green(' was created'))
+        console.log(chalk.reset.green('\t+ '), chalk.cyan.underline(p.replace(url, '')), chalk.green(' was created'))
     })
 }
 
@@ -44,7 +43,7 @@ function component (args) {
 
             fs.mkdir(component_path, err => {
                 if (err) {
-                    console.log(chalk.red('\tCannot create component directory'))
+                    console.log(chalk.reset.red('\tCannot create component directory'))
                     console.log(err)
                     return
                 }
@@ -59,19 +58,17 @@ function component (args) {
         }
 
 
-
-
         /** Find valid folder */
 
         fs.readdir(app_path, err => {
             if (err) 
-                console.log(chalk.red('\tYou are in invalid folder or input folder doesnt exist'))
+                console.log(chalk.reset.red('\tYou are in invalid folder or input folder doesnt exist'))
             else
                 createComponent()
         })
     }
     else 
-        console.log(chalk.red('\tInvalid name of component'))
+        console.log(chalk.reset.red('\tInvalid name of component'))
 }
 
 

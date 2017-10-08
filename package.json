@@ -1,6 +1,6 @@
 {
   "name": "ts-modules",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "author": {
     "name": "Filip Kasarda",
     "email": "fkasarda@gmail.com"
@@ -22,13 +22,14 @@
   },
   "main": "./app.js",
   "bin": {
-    "modular": "bin/cli.js"
+    "modular": "bin/main.js"
   },
   "scripts": {
     "build-source": "node bin/build.js"
   },
   "dependencies": {
     "chalk": "^2.1.0",
+    "command-exists": "^1.2.2",
     "commander": "^2.11.0",
     "cross-spawn": "^5.1.0",
     "shelljs": "^0.7.8"
