@@ -6,7 +6,6 @@ const path = require('path')
 const chalk = require('chalk')
 const Init = require('./init')
 const package = require('../package.json')
-const cli = require('./util/cli')
 const { choose, executeCommand, support } = require('./util/cli')
 
 const doc = require('./doc')
