@@ -54,7 +54,7 @@ export interface ParallaxOptions extends Properties {
   *
 */
 
-export function Parallax(options: ParallaxOptions) {
+export function Parallax(options: any) {
 
     /**
       *
@@ -67,7 +67,7 @@ export function Parallax(options: ParallaxOptions) {
     const timing: (progress: number) => number = options.timing
 
     const list_of_supported_properties: string[] = ['translateX', 'translateY', 'scale', 'rotate', 'opacity', 'skewX', 'skewY', 'skew', 'translateZ', 'rotateZ', 'rotateX', 'rotateY', 'scaleX', 'scaleY', 'scaleZ', 'translate', 'perspective']
-    const properties: Properties = {}
+    const properties: any = {}
     list_of_supported_properties.forEach(prop => options[prop] && (properties[prop] = options[prop]))
 
 
@@ -109,7 +109,7 @@ export function Parallax(options: ParallaxOptions) {
             */
             const transform: any[] = []
             const opacity: number[] = []
-            let scroll_progress: number
+            let scroll_progress: any
             for (const prop in properties) {
 
                 const prop_val: number[] = properties[prop]

@@ -5,7 +5,7 @@ module.exports = {
 
         return `${import_css}import { Component, React } from 'ts-modules/react'
 
-export default class ${component} extends Component {
+export default class ${component} extends Component<any, any> {
     render() {
         return (
             <div id="${component}">

@@ -33,14 +33,14 @@ let kSampleStepSize = 1.0 / (kSplineTableSize - 1.0)
 
 let float32ArraySupported = typeof Float32Array === 'function'
 
-const A = (aA1, aA2) => 1.0 - 3.0 * aA2 + 3.0 * aA1
-const B = (aA1, aA2) => 3.0 * aA2 - 6.0 * aA1
-const C = (aA1)      => 3.0 * aA1
-const calcBezier = (aT, aA1, aA2) => ((A(aA1, aA2) * aT + B(aA1, aA2)) * aT + C(aA1)) * aT
-const getSlope = (aT, aA1, aA2) => 3.0 * A(aA1, aA2) * aT * aT + 2.0 * B(aA1, aA2) * aT + C(aA1)
+const A: (aA1: number, aA2: number) => number = (aA1, aA2) => 1.0 - 3.0 * aA2 + 3.0 * aA1
+const B: (aA1: number, aA2: number) => number = (aA1, aA2) => 3.0 * aA2 - 6.0 * aA1
+const C: (aA1: number) => number =              (aA1)      => 3.0 * aA1
+const calcBezier: (aT: number, aA1: number, aA2: number) => number = (aT, aA1, aA2) => ((A(aA1, aA2) * aT + B(aA1, aA2)) * aT + C(aA1)) * aT
+const getSlope: (aT: number, aA1: number, aA2: number) => number = (aT, aA1, aA2) => 3.0 * A(aA1, aA2) * aT * aT + 2.0 * B(aA1, aA2) * aT + C(aA1)
 
-function binarySubdivide (aX, aA, aB, mX1, mX2) {
-  let currentX, currentT, i = 0
+function binarySubdivide (aX: number, aA: number, aB: number, mX1: number, mX2: number): number {
+  let currentX: number, currentT: number, i: number = 0
   do {
     currentT = aA + (aB - aA) / 2.0
     currentX = calcBezier(currentT, mX1, mX2) - aX
@@ -53,13 +53,13 @@ function binarySubdivide (aX, aA, aB, mX1, mX2) {
   return currentT
 }
 
-function newtonRaphsonIterate (aX, aGuessT, mX1, mX2) {
+function newtonRaphsonIterate (aX: number, aGuessT: number, mX1: number, mX2: number): number {
  for (let i = 0; i < NEWTON_ITERATIONS; ++i) {
-   let currentSlope = getSlope(aGuessT, mX1, mX2)
+   let currentSlope: number = getSlope(aGuessT, mX1, mX2)
    if (currentSlope === 0.0) {
      return aGuessT
    }
-   let currentX = calcBezier(aGuessT, mX1, mX2) - aX
+   let currentX: number = calcBezier(aGuessT, mX1, mX2) - aX
    aGuessT -= currentX / currentSlope
  }
  return aGuessT
@@ -67,7 +67,7 @@ function newtonRaphsonIterate (aX, aGuessT, mX1, mX2) {
 
 
 
-export function bezier (mX1, mY1, mX2, mY2) {
+export function bezier (mX1: number, mY1: number, mX2: number, mY2: number): any {
   if (!(0 <= mX1 && mX1 <= 1 && 0 <= mX2 && mX2 <= 1))
     error('bezier x values must be in [0, 1] range')
 
@@ -78,7 +78,7 @@ export function bezier (mX1, mY1, mX2, mY2) {
 
   }
 
-  function getTForX (aX) {
+  function getTForX (aX: number): number {
     let intervalStart = 0.0
     let currentSample = 1
     let lastSample = kSplineTableSize - 1
@@ -88,10 +88,10 @@ export function bezier (mX1, mY1, mX2, mY2) {
 
     --currentSample
 
-    let dist = (aX - sampleValues[currentSample]) / (sampleValues[currentSample + 1] - sampleValues[currentSample])
-    let guessForT = intervalStart + dist * kSampleStepSize
+    let dist: number = (aX - sampleValues[currentSample]) / (sampleValues[currentSample + 1] - sampleValues[currentSample])
+    let guessForT: number = intervalStart + dist * kSampleStepSize
 
-    let initialSlope = getSlope(guessForT, mX1, mX2)
+    let initialSlope: number = getSlope(guessForT, mX1, mX2)
     if (initialSlope >= NEWTON_MIN_SLOPE)
       return newtonRaphsonIterate(aX, guessForT, mX1, mX2)
     else if (initialSlope === 0.0)
@@ -101,7 +101,7 @@ export function bezier (mX1, mY1, mX2, mY2) {
 
   }
 
-  return function BezierEasing (x) {
+  return function BezierEasing (x: number): number {
     if (mX1 === mY1 && mX2 === mY2)
       return x // linear
 
@@ -126,7 +126,7 @@ export function bezier (mX1, mY1, mX2, mY2) {
   * steps( steps ) (progress)
   *
 */
-export function steps(steps:number) {
+export function steps(steps:number): (progress: number) => number {
 	return progress => Math.round(progress * steps) * (1 / steps)
 }
 
@@ -143,8 +143,8 @@ export function steps(steps:number) {
 export const spring = (function() {
 	const springAccelerationForState = (state:any) => (-state.tension * state.x) - (state.friction * state.v)
 
-  function springEvaluateStateWithDerivative(initialState, dt, derivative) {
-		const state = {
+  function springEvaluateStateWithDerivative(initialState: any, dt: any, derivative: any): any {
+		const state: any = {
 			x: initialState.x + derivative.dx * dt,
 			v: initialState.v + derivative.dv * dt,
 			tension: initialState.tension,
@@ -154,8 +154,8 @@ export const spring = (function() {
 		return {dx: state.v, dv: springAccelerationForState(state)}
 	}
 
-	function springIntegrateState(state, dt) {
-		const a = {
+	function springIntegrateState(state: any, dt: any): any {
+		const a: any = {
 			dx: state.v,
 			dv: springAccelerationForState(state)
 		},
@@ -171,9 +171,9 @@ export const spring = (function() {
 		return state
 	}
 
-	return function springRK4Factory(tension, friction, duration?:number):any {
+	return function springRK4Factory(tension: any, friction: any, duration?:any):any {
 
-		let initState = {
+		let initState: any = {
 			x: -1,
 			v: 0,
 			tension: null,

@@ -27,34 +27,6 @@ export function unique(array: any[]): any[] {
 
 
 
-
-/**
-  *
-  * @function del
-  * Get new array by removing specific @param items
-  *
-*/
-
-export function del(array: any[], ...items: any[]): any[] {
-    items.forEach(item => {
-        if (array.includes(item)) {
-            const index: number = array.indexOf(item)
-            if (index > -1) {
-                array.splice(index, 1)
-                return array
-            }
-            return array
-        }
-    })
-    return array
-}
-
-
-
-
-
-
-
 /**
   *
   * @function isPlain
@@ -92,7 +64,7 @@ export function isNaN(obj: any): boolean {
   *
 */
 
-export function error(...msg: any[]): void {
+export function error(this: any,...msg: any[]): void {
     console.error.apply(this, msg)
 }
 
@@ -254,7 +226,7 @@ export function setStyles(elem: any, styles: any, value?: any): void {
 export function createRequestFrame(duration: number, callback: (progress?: number, runtime?: number, remaining?: number, runned?: number, timestamp?: number, id?: number) => void | boolean, done?: (id: number) => void): number {
     let starttime: number
     let requestID: number
-    function animation(timestamp: number) {
+    function animation(this: any, timestamp: number) {
         const runtime: number = timestamp - starttime
         const progress: number = Math.min(runtime / duration, 1)
 

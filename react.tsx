@@ -10,14 +10,12 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 
-
 /**
  * 
  * Component function with success ts check
  * 
  */
-type component = new (props?: any, context?: any, updater?: any) => any
-export const Component: component = React.Component
+export const Component = React.Component
 
 
 /**
@@ -95,12 +93,12 @@ export class Router {
 
 
 
-export class Routes extends Component{
-
+export class Routes extends Component<any, any>{
+ 
     render(){
         const children: any = this.props.children
         const childs: any[] = children instanceof Array ? children : [children]
-        const notFound: any[] = children.filter(temp => temp.props.notFound)
+        const notFound: any[] = children.filter((temp: any) => temp.props.notFound)
         return (
             <outlet-component>
                 {Router.render(childs, notFound)}
@@ -110,7 +108,7 @@ export class Routes extends Component{
 }
 
 
-export class Link extends Component {
+export class Link extends Component<any, any> {
     render(){
         let className: string = ''
         const def_className: string = 'active'

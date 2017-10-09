@@ -76,7 +76,7 @@ export class WebWorker implements WebWorkerInterface  {
 
     read(name: string, callback: (data?: any, event?: Event) => void): WebWorkerInterface{
         const scope: WebWorkerInterface = this
-        this.worker.addEventListener('message', function(event){
+        this.worker.addEventListener('message', function(this:any, event: any){
             if(name === event.data.name){
                 callback.call(this, event.data.data, event)
                 scope.readed.push(name)
