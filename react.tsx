@@ -3,7 +3,7 @@
  * @module react
  * 
  * Includes refference to @var React and @var ReactDOM
- * Includes @const Component and @const Render constants to pass correctly ts checking
+ * Includes @const Component and @const Render constants shorthands
  * This module includes Hash routing components
  */
 
@@ -12,19 +12,13 @@ import * as ReactDOM from 'react-dom'
 
 /**
  * 
- * Component function with success ts check
+ * Shorthands
  * 
  */
+
 export const Component = React.Component
+export const Render = ReactDOM.render
 
-
-/**
- * 
- * Render function with success ts check
- * 
- */
-
-export const Render: (template: any, element: HTMLElement, callback?: () => void) => any = ReactDOM.render
 
 
 /**
