@@ -7,7 +7,7 @@ const chalk = require('chalk')
 const { choose, executeCommand, getFilesList } = require('./util/cli')
 
 const manager = choose('yarn', 'npm')
-const repo = 'https://github.com/fazulkovy/modular.git'
+const repo = 'https://github.com/Kasarda/modular.git'
 
 
 
