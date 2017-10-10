@@ -3,22 +3,11 @@
  * @module react
  * 
  * Includes refference to @var React and @var ReactDOM
- * Includes @const Component and @const Render constants shorthands
  * This module includes Hash routing components
  */
 
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
-
-/**
- * 
- * Shorthands
- * 
- */
-
-export const Component = React.Component
-export const Render = ReactDOM.render
-
 
 
 /**
@@ -87,7 +76,7 @@ export class Router {
 
 
 
-export class Routes extends Component<any, any>{
+export class Routes extends React.Component<any, any>{
  
     render(){
         const children: any = this.props.children
@@ -102,7 +91,8 @@ export class Routes extends Component<any, any>{
 }
 
 
-export class Link extends Component<any, any> {
+export class Link extends React.Component<any, any> {
+    
     render(){
         let className: string = ''
         const def_className: string = 'active'
@@ -125,7 +115,7 @@ export class Link extends Component<any, any> {
  * 
  * import {..., Router, Routes, Link}
  * 
- * class AppComponent extends Component{
+ * class AppComponent extends React.Component<any, any>{
  *  constructor(){
  *      ...
  *      new Router(this) -> create event listener on hash change, update this.state.path on every hash change and trigger method onHashChange
