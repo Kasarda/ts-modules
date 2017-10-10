@@ -36,7 +36,8 @@
   * @param {version}
   * @param {component <name_of_component> ?[<options>]}
   * @desc 
-  * yarn global add ts-modules
+  * $ yarn global add ts-modules
+  * $ npm i -g ts-modules
   * $ modular init app
   *
   */
