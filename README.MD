@@ -1,6 +1,6 @@
 # ts-modules
 
-- Typescript, Sass modules and CLI for Modular starter-kit
+Typescript, Sass modules and CLI for Modular starter-kit
 ```bash
 $ npm i -g ts-modules
 $ modular new App
@@ -76,6 +76,10 @@ worker.read('message from app', data => {
 Module to provide React, ReactDOM and simple Hash Routing
 ```jsx
 import { React, ReactDOM, Router, Routes, Link } from 'ts-modules/react'
+
+import Home from './Home/Home.component'
+import About from './About/About.component'
+import NotFound from './NotFound/NotFound.component'
 
 class App extends React.Component<any, any>{
   constructor(){
@@ -228,4 +232,56 @@ h1
   +gradient-striped(red,45deg)  
 
 ```
+## CLI
+### modular new ?<folder_name>
+Clone modular starter-kit and install depensdencies
+```bash
+$ modular new App
+$ modular new     // default name is 'modular'
+```
+### modular pull \<repo> ?<folder_name>
+Clone <repo> and install depensdencies
+  
+```bash
+$ modular pull https://github.com/kasarda/ts-modules.git
+$ modular pull git@github.com:kasarda/ts-modules.git App
+$ modular pull kasarda/ts-modules
+```
+### modular component <name> ?<options>
+Create React component with sass file
+#### ?<options>
+- !css - Create component without sass file
+- in=<parent_component> - Create sub component
+  
+```bash
+$ modular component About
+$ modular component Contact !css
+$ modular component Address in=Contact
+$ modular component Street in=Contact/Address !css
+```
+```
++ app/About/About.component.tsx
++ app/About/About.sass
+
++ app/Contact/Contact.component.tsx
+
++ app/Contact/Address/Address.component.tsx
++ app/Contact/Address/Address.sass
+
++ app/Contact/Address/Street/Street.component.tsx
+```
+### modular serve | build | test | install
+Run NPM or Yarn command 
+  
+```bash
+$ modular serve
+$ modular build
+$ modular test
+```
+
+### modular version
+Get version of CLI
+
+### modular ?\<anything>
+Get Documentation
 
