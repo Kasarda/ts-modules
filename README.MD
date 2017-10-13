@@ -232,24 +232,26 @@ h1
   +gradient-striped(red,45deg)  
 
 ```
+
 ## CLI
 ### modular new ?<folder_name>
-Clone modular starter-kit and install depensdencies
+Clone modular starter-kit and install dependencies
+
 ```bash
 $ modular new App
 $ modular new     // default name is 'modular'
 ```
 ### modular pull \<repo> ?<folder_name>
-Clone <repo> and install depensdencies
+Clone \<repo> and install depensdencies
   
 ```bash
 $ modular pull https://github.com/kasarda/ts-modules.git
 $ modular pull git@github.com:kasarda/ts-modules.git App
 $ modular pull kasarda/ts-modules
 ```
-### modular component <name> ?<options>
+### modular component \<name> ?\<options>
 Create React component with sass file
-#### ?<options>
+#### ?\<options>
 - !css - Create component without sass file
 - in=<parent_component> - Create sub component
   
@@ -282,6 +284,6 @@ $ modular test
 ### modular version
 Get version of CLI
 
-### modular ?\<anything>
+### modular ?\<anything_else>
 Get Documentation
 
