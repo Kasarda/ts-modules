@@ -1,6 +1,4 @@
-/node_modules
-package-lock.json
-yarn-error.txt
-yarn-error.log
-npm-debug.log
+.DS_STORE
+*.log
 /.git
+node_modules

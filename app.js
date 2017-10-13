@@ -1,7 +1,17 @@
+/**! @license
+  * app.js
+  *
+  * This source code is licensed under the GNU GENERAL PUBLIC LICENSE found in the
+  * LICENSE file in the root directory of this source tree.
+  *
+  * Copyright (c) 2017-Present, Filip Kasarda
+  *
+  */
+
 /**
  * 
  * @name ts-modules
- * @desc Modules and CLI for @name modular environment for react
+ * @desc Modules and CLI for @name modular starter-kit
  * 
  */
 
@@ -31,13 +41,13 @@
   * 
   * CLI
   * @name modular
-  * @param {init ?[<name>]}
+  * @param {new ?[<name>]}
+  * @param {pull <repo> ?[<name>]}
   * @param {serve|build|install|test}
   * @param {version}
   * @param {component <name_of_component> ?[<options>]}
   * @desc 
-  * $ yarn global add ts-modules
   * $ npm i -g ts-modules
-  * $ modular init app
+  * $ modular new app
   *
   */

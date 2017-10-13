@@ -1,24 +1,32 @@
 #!/usr/bin/env node
 
+/**! @license
+  * init.js
+  *
+  * This source code is licensed under the GNU GENERAL PUBLIC LICENSE found in the
+  * LICENSE file in the root directory of this source tree.
+  *
+  * Copyright (c) 2017-Present, Filip Kasarda
+  *
+  */
+
 const shell = require('shelljs')
-const path = require('path')
-const fs = require('fs')
-const chalk = require('chalk')
+const { join } = require('path')
+const { reset } = require('chalk')
 const { choose, executeCommand, getFilesList } = require('./util/cli')
 
 const manager = choose('yarn', 'npm')
-const repo = 'https://github.com/kasarda/modular.git'
 
 
 
-module.exports = async appName => {
+module.exports = async (appName, repo) => {
   let err
   /**
    * 
    * Clone from repo
    * 
    */
-  console.log(chalk.reset.cyan.underline('\t Application is creating'))
+  console.log(reset.cyan.underline('\t Application is creating'))
   await executeCommand(`git clone ${repo} ${appName}`)
 
 
@@ -28,16 +36,16 @@ module.exports = async appName => {
    * Get list of new files
    * 
    */
-  const app_dir = path.join(process.cwd(), appName)
+  const app_dir = join(process.cwd(), appName)
   const list = getFilesList(app_dir, ['node_modules', '\.git'])
-  list.forEach(file => console.log(chalk.reset.green(`\t+ ${file.replace(app_dir, '')}`)))
+  list.forEach(file => console.log(reset.green(`\t+ ${file.replace(app_dir, '')}`)))
 
   /**
    * 
    * Install packages
    * 
    */
-  console.log(chalk.reset.cyan.underline('\n\t Installing packages ...'))
+  console.log(reset.cyan.underline('\n\t Installing packages ...'))
   shell.cd(appName)
   await executeCommand(`${manager} install`)
 

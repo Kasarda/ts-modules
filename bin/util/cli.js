@@ -1,22 +1,48 @@
 #!/usr/bin/env node
 
+/**! @license
+  * cli.js
+  *
+  * This source code is licensed under the GNU GENERAL PUBLIC LICENSE found in the
+  * LICENSE file in the root directory of this source tree.
+  *
+  * Copyright (c) 2017-Present, Filip Kasarda
+  *
+  */
+
 const commandExists = require('command-exists').sync
 const spawn = require('cross-spawn')
-const fs = require('fs')
-const path = require('path')
+const { readdirSync, statSync } = require('fs')
+const { join } = require('path')
 
 
 let filelist = []
 
-const cli = {
-  to(promise) {
-    return promise.then(data => [null, data]).catch(err => [err])
-  },
 
+const cli = {
+  
+  /**
+   * 
+   * @method support
+   * @param {string} command 
+   * @desc
+   *  Check if pc support specific command such as node, npm or git ...
+   * 
+   */
   support(command) {
     return commandExists(command)
   },
 
+  /**
+   * 
+   * @method choose
+   * @param {string[]} commands
+   * @desc
+   *  Choose first command from array which is supported by pc
+   * e.g. choose('yarn', 'npm') -> if yarn is supported then return yarn 
+   *                               if is not and npm is supported then npm will be returned ...
+   *                               Otherwise return null
+   */
   choose(...commands) {
     let supported_command = null
 
@@ -29,6 +55,15 @@ const cli = {
   },
 
 
+
+  /**
+   * 
+   * @method executeCommand
+   * @param {string} command -> command is with arguments
+   * @desc
+   *  Execute command and return promise 
+   * e.g. executeCommand('git clone https://github.com/user/project.git').then(() => console.log('done')).catch(err => err)
+   */
   executeCommand(command) {
 
     const commands = command.split(' ')
@@ -36,26 +71,27 @@ const cli = {
 
     return new Promise((resolve, reject) => {
 
-      if (commandExists(commands[0])) {
-        const child = spawn(commands[0], options, { stdio: 'inherit' })
-
-        child.on('close', code => {
-          if (code !== 0) {
-            reject({ command })
-            return
-          }
-          resolve()
-        })
+      if (!commandExists(commands[0])){
+        reject()
+        return
       }
-      else reject()
 
+      const child = spawn(commands[0], options, { stdio: 'inherit' })
+
+      child.on('close', code => {
+        if (code !== 0) {
+          reject({ command })
+          return
+        }
+        resolve()
+      })
 
     })
 
   },
 
   getFilesList(dir, exludes = []) {
-    const files = fs.readdirSync(dir)
+    const files = readdirSync(dir)
     filelist = filelist
 
     let exlude_string = '\.git'
@@ -68,10 +104,10 @@ const cli = {
     })
 
     files.forEach(file => {
-      if (fs.statSync(path.join(dir, file)).isDirectory() && !file.match(new RegExp(exlude_string, 'i')))
-        filelist = cli.getFilesList(path.join(dir, file), exludes)
+      if (statSync(join(dir, file)).isDirectory() && !file.match(new RegExp(exlude_string, 'i')))
+        filelist = cli.getFilesList(join(dir, file), exludes)
       else
-        filelist.push(path.join(dir, file))
+        filelist.push(join(dir, file))
     })
 
     return filelist

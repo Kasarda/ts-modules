@@ -1,3 +1,17 @@
+/**! @license
+ * 
+ * @name React
+ * @name ReactDOM
+ * 
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ * 
+ */
+
+
+
 /**
  * 
  * @module react
@@ -19,6 +33,24 @@ export { React }
 export { ReactDOM }
 
 
+
+
+
+
+
+/**! @license
+  * react.tsx
+  *
+  * @name Router
+  * @name Routes
+  * @name Link
+  *
+  * This source code is licensed under the GNU GENERAL PUBLIC LICENSE found in the
+  * LICENSE file in the root directory of this source tree.
+  *
+  * Copyright (c) 2017-Present, Filip Kasarda
+  *
+  */
 
 
 /**

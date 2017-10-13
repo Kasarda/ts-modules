@@ -1,3 +1,14 @@
+/**! @license
+ *
+ * @name Animation
+ * 
+ * http://animejs.com
+ * @author Julian Garnier
+ * @copyright ©2017 Julian Garnier
+ * Released under the MIT license
+ */
+
+
 /**
  * 
  * @module {animation}
@@ -14,24 +25,35 @@ import { error } from './common'
 
 
 
+/**! @license
+ * 
+ * @name bezier
+ * https://github.com/gre/bezier-easing
+ * BezierEasing - use bezier curve for transition easing function
+ * by Gaëtan Renaudeau 2014 - 2015 – MIT License
+ * 
+ * Modify to TS by Filip Kasarda
+ * 
+ */
+
 /**
   *
-  * {bezier}
+  * @function bezier
   * Bezier timing function
   * bezier( a b c d ) (progress)
   *
 */
 
 
-const NEWTON_ITERATIONS = 4
-const NEWTON_MIN_SLOPE = 0.001
-const SUBDIVISION_PRECISION = 0.0000001
-const SUBDIVISION_MAX_ITERATIONS = 10
+const NEWTON_ITERATIONS: number = 4
+const NEWTON_MIN_SLOPE: number = 0.001
+const SUBDIVISION_PRECISION: number = 0.0000001
+const SUBDIVISION_MAX_ITERATIONS: number = 10
 
-let kSplineTableSize = 11
-let kSampleStepSize = 1.0 / (kSplineTableSize - 1.0)
+let kSplineTableSize: number = 11
+let kSampleStepSize: number = 1.0 / (kSplineTableSize - 1.0)
 
-let float32ArraySupported = typeof Float32Array === 'function'
+let float32ArraySupported: boolean = typeof Float32Array === 'function'
 
 const A: (aA1: number, aA2: number) => number = (aA1, aA2) => 1.0 - 3.0 * aA2 + 3.0 * aA1
 const B: (aA1: number, aA2: number) => number = (aA1, aA2) => 3.0 * aA2 - 6.0 * aA1
@@ -121,7 +143,7 @@ export function bezier (mX1: number, mY1: number, mX2: number, mY2: number): any
 
 /**
   *
-  * {steps}
+  * @function steps
   * Steps timing function
   * steps( steps ) (progress)
   *
@@ -133,9 +155,24 @@ export function steps(steps:number): (progress: number) => number {
 
 
 
+
+/**! @license
+ * 
+ * @name spring
+ * Runge-Kutta spring physics function generator.
+ * Adapted from Framer.js,
+ * copyright Koen Bok.
+ * MIT License: http://en.wikipedia.org/wiki/MIT_License
+ * 
+ * Modify to TS by Filip Kasarda
+ * 
+ */
+
+
+
 /**
   *
-  * {spring}
+  * @const spring
   * Spring physics timing function
   * spring(tension friction  duration ) (progress)
   *
@@ -216,7 +253,12 @@ export const spring = (function() {
 
 
 
-
+/**
+ * 
+ * @var easings
+ * Cubic bezier shorthands
+ * 
+ */
 
 export let easings: any = {
     ease: bezier(0.25, 0.1, 0.25, 1.0),
