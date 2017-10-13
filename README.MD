@@ -1,13 +1,13 @@
 # ts-modules
 
-Typescript, Sass modules and CLI for Modular starter-kit
+TypeScript, Sass modules and CLI for [Modular](https://github.com/kasarda/modular) starter-kit
 ```bash
 $ npm i -g ts-modules
 $ modular new App
 $ modular serve
 ```
 
-## Typescript Module
+## TypeScript Module
 
 ### Animation
 Module provide animejs animation engine and timing functions
