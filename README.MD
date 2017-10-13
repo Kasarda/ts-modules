@@ -6,11 +6,11 @@ $ npm i -g ts-modules
 $ modular new App
 $ modular serve
 ```
-
+---
 ## TypeScript Module
 
 ### Animation
-Module provide animejs animation engine and timing functions
+Module provide [animejs](http://animejs.com/documentation/) animation engine and timing functions
 ```ts
 import { Animation, bezier, steps, spring } from 'ts-modules/animation'
 
@@ -115,22 +115,22 @@ class App extends React.Component<any, any>{
   }
 }
 ```
-
+---
 ## Sass Module
 
-### animation
+### Animation
 CSS classes for @keyframe animation
 
-### grid
+### Grid
 Bootstrap 4 grid
 
-### visibility
+### Visibility
 Bootstrap 4 visibility
 
-### normalize
+### Normalize
 CSS reset
 
-### lib
+### Library
 Sass library
 ```sass
 @import '~ts-modules/lib'
@@ -233,7 +233,7 @@ h1
   +gradient-striped(red,45deg)  
 
 ```
-
+---
 ## CLI
 ### modular new ?<folder_name>
 Clone modular starter-kit and install dependencies
