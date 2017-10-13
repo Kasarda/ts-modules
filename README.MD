@@ -36,7 +36,7 @@ import { Parallax } from 'ts-modules/parallax'
 
 Parallax({
   targets: '#cssSelector .el',
-  progress: (progress) => easings.easeIn(progress),
+  progress: progress => easings.easeIn(progress),
   duration: 300, 
   translateX: [ 0, 200 ] // from transformX(0px) to transformX(200px),
   opacity: [ 0, 1, 100, 200 ] // from 0 to 1, but animation start 100px before element is in view and end 200px after is in view
