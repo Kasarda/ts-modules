@@ -11,7 +11,7 @@ $ modular serve
 
 ### Animation
 Module provide animejs animation engine and timing functions
-```js
+```ts
 import { Animation, bezier, steps, spring } from 'ts-modules/animation'
 
 // animejs framework - http://animejs.com/documentation/
@@ -30,7 +30,7 @@ spring(100,7,500)(progress)
 
 ### Parallax
 Module provide simple function to create parallax effects using CSS transform propery and opacity
-```js
+```ts
 import { easings } from 'ts-modules/animation'
 import { Parallax } from 'ts-modules/parallax'
 
@@ -48,7 +48,7 @@ Parallax({
 
 ### Worker
 Simple way to comunicate with WebWorker
-```js
+```ts
 /////// app.ts
 import { WebWorker, WebWorkerInterface } from 'ts-modules/worker'
 import * as MainWorker from 'worker-loader!./worker.ts'
@@ -74,7 +74,7 @@ worker.read('message from app', data => {
 
 ### React
 Module to provide React, ReactDOM and simple Hash Routing
-```jsx
+```tsx
 import { React, ReactDOM, Router, Routes, Link } from 'ts-modules/react'
 
 import Home from './Home/Home.component'
@@ -128,10 +128,10 @@ Boostrap 4 grid
 Boostrap 4 visibility
 
 ### normalize
-css reset
+CSS reset
 
 ### lib
-sass library
+Sass library
 ```sass
 @import '~ts-modules/lib'
 
@@ -143,6 +143,7 @@ body
   font-family: 'fancy'
 
 // centering (x|y|both) || ()
+
 .centerX
   +center(x)
   
@@ -239,15 +240,15 @@ Clone modular starter-kit and install dependencies
 
 ```bash
 $ modular new App
-$ modular new     // default name is 'modular'
+$ modular new     // default <folder_name> is 'modular'
 ```
 ### modular pull \<repo> ?<folder_name>
 Clone \<repo> and install dependencies
   
 ```bash
-$ modular pull https://github.com/kasarda/ts-modules.git
+$ modular pull https://github.com/kasarda/ts-modules.git // <folder_name> is 'ts-modules'
 $ modular pull git@github.com:kasarda/ts-modules.git App
-$ modular pull kasarda/ts-modules
+$ modular pull kasarda/ts-modules // <folder_name> is 'ts-modules'
 ```
 ### modular component \<name> ?\<options>
 Create React component with sass file
