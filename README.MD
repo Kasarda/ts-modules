@@ -122,10 +122,10 @@ class App extends React.Component<any, any>{
 CSS classes for @keyframe animation
 
 ### grid
-Boostrap 4 grid
+Bootstrap 4 grid
 
 ### visibility
-Boostrap 4 visibility
+Bootstrap 4 visibility
 
 ### normalize
 CSS reset
