@@ -246,9 +246,9 @@ $ modular new     // default <folder_name> is 'modular'
 Clone \<repo> and install dependencies
   
 ```bash
-$ modular pull https://github.com/kasarda/ts-modules.git // <folder_name> is 'ts-modules'
-$ modular pull git@github.com:kasarda/ts-modules.git App
-$ modular pull kasarda/ts-modules // <folder_name> is 'ts-modules'
+$ modular pull  https://github.com/kasarda/ts-modules.git   // <folder_name> is 'ts-modules'
+$ modular pull  git@github.com:kasarda/ts-modules.git       App
+$ modular pull  kasarda/ts-modules                          // <folder_name> is 'ts-modules'
 ```
 ### modular component \<name> ?\<options>
 Create React component with sass file
