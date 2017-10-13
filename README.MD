@@ -242,7 +242,7 @@ $ modular new App
 $ modular new     // default name is 'modular'
 ```
 ### modular pull \<repo> ?<folder_name>
-Clone \<repo> and install depensdencies
+Clone \<repo> and install dependencies
   
 ```bash
 $ modular pull https://github.com/kasarda/ts-modules.git
