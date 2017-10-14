@@ -17,11 +17,9 @@ const { version } = require('../package.json')
 const Init = require('./init')
 const doc = require('./doc')
 
-
-const manager = choose('yarn', 'npm')
-
 program.version(version).usage('<keywords>').parse(process.argv)
 
+const manager = choose('yarn', 'npm')
 const starter_kit_repo = 'https://github.com/kasarda/modular.git'
 
 
@@ -52,7 +50,7 @@ else
          * 
          */
         case 'new':
-            Init(program.args[1] || 'modular', starter_kit_repo).then(() => console.log(doc))
+            Init(program.args[1] || 'modular', starter_kit_repo)
         break
 
 
@@ -75,7 +73,7 @@ else
             if ( !repo_arg.includes('https://') && !repo_arg.includes('git@github.com') )
                 repo = `https://github.com/${repo_arg}.git`
             
-            Init(program.args[2] || name, repo).then(_ => console.log(doc))
+            Init(program.args[2] || name, repo)
         break
 
 
@@ -87,7 +85,7 @@ else
          * 
          */
         case 'install':
-            console.log(reset.cyan.underline('\Installing packages via ', manager))
+            console.log(reset.cyan.underline('\Installing packages via', manager))
             executeCommand(`${manager} install`)
         break
 
@@ -96,7 +94,7 @@ else
 
         /**
          * 
-         * NPM run common commands
+         * NPM or Yarn commands
          * 
          */
         case 'serve':
@@ -115,18 +113,7 @@ else
          * 
          */
         case 'component':
-            require('./component')(program.args, program)
-        break
-
-
-
-        /**
-         * 
-         * Get version of cli
-         * 
-         */
-        case 'version':
-            console.log(reset.cyan('modular cli -> version', version))
+            require('./component')(program.args)
         break
 
 

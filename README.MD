@@ -251,16 +251,17 @@ $ modular pull  git@github.com:kasarda/ts-modules.git       App
 $ modular pull  kasarda/ts-modules                          // <folder_name> is 'ts-modules'
 ```
 ### modular component \<name> ?\<options>
-Create React component with sass file
+Create React component with css file
 #### ?\<options>
-- !css - Create component without sass file
+- !css - Create component without css file
+- functional - Create component using function not class
 - in=<parent_component> - Create sub component
-  
+
 ```bash
 $ modular component About
 $ modular component Contact !css
 $ modular component Address in=Contact
-$ modular component Street in=Contact/Address !css
+$ modular component Street in=Contact/Address !css functional
 ```
 ```
 + app/About/About.component.tsx
@@ -274,15 +275,16 @@ $ modular component Street in=Contact/Address !css
 + app/Contact/Address/Street/Street.component.tsx
 ```
 ### modular serve | build | test | install
-Run NPM or Yarn command 
+Run NPM or Yarn command
   
 ```bash
 $ modular serve
 $ modular build
 $ modular test
+$ modular install
 ```
 
-### modular version
+### modular -V
 Get version of CLI
 
 ### modular ?\<anything_else>

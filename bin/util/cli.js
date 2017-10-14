@@ -90,24 +90,41 @@ const cli = {
 
   },
 
+
+  /**
+   * 
+   * @method getFilesList
+   * @param {string} dir
+   * @param {string[]} exludes -> array of ignored folders
+   * @desc
+   *  Return list of all files inside dir
+   */
+
   getFilesList(dir, exludes = []) {
     const files = readdirSync(dir)
     filelist = filelist
 
     let exlude_string = '\.git'
     exludes.forEach((exlude, index) => {
-      if (index === 0)
-        exlude_string = exlude
-
-      else
+      if (!index === 0){
         exlude_string = exlude_string + '|' + exlude
+        return
+      }
+
+      exlude_string = exlude
+
     })
 
     files.forEach(file => {
-      if (statSync(join(dir, file)).isDirectory() && !file.match(new RegExp(exlude_string, 'i')))
-        filelist = cli.getFilesList(join(dir, file), exludes)
-      else
+      const isDir = statSync(join(dir, file)).isDirectory()
+      const is_not_exludes = !file.match(new RegExp(exlude_string, 'i'))
+      
+      if (!(isDir && is_not_exludes)) {
         filelist.push(join(dir, file))
+        return
+      }
+      
+      filelist = cli.getFilesList(join(dir, file), exludes)
     })
 
     return filelist

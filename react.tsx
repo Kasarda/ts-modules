@@ -109,7 +109,7 @@ export class Router {
 
 
 export class Routes extends React.Component<any, any>{
- 
+    
     render(){
         const children: any = this.props.children
         const childs: any[] = children instanceof Array ? children : [children]

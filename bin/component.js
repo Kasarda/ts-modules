@@ -11,76 +11,105 @@
   */
 
 const fs = require('fs')
-const path = require('path')
+const { join } = require('path')
 const template = require('./template')
-const chalk = require('chalk')
+const { reset, cyan, red, green } = require('chalk')
 
 const url = process.cwd()
 
-function createFile(p, temp){
-    fs.writeFile(p, temp, err => {
+
+
+/**
+ *
+ * Write file and handle error
+ *  
+ * @param {string} file_path 
+ * @param {string} temp 
+ *
+ */
+
+function createFile(file_path, temp){
+    fs.writeFile(file_path, temp, err => {
         if(err) {
-            console.log(chalk.reset.red(`Cannot create ${chalk.red.underline(p.replace(url, ''))}`), err)
+            console.log(reset.red(`Cannot create ${red.underline(file_path.replace(url, ''))}\n`), err)
             return
         }
-
-        console.log(chalk.reset.green('\t+ '), chalk.cyan.underline(p.replace(url, '')), chalk.green(' was created'))
+        console.log(reset.green('\t+ '), cyan.underline(file_path.replace(url, '')), green(' was created'))
     })
 }
 
 
+
+/**
+ *
+ * Create Component files with templates
+ *  
+ * @param {string[]} args -> arguments from process
+ *
+ */
+
 function component (args) {
-    
-    let component = args[1]
-    if (component) {
 
-        let sub_path = './'
-        args.forEach( arg => {
-            if(arg.match(/in=.{1,}/)){
-                sub_path = arg.replace('in=', '')
-            }
-        })
-        const component_upper = component.replace(/./, m => m.toUpperCase())
-        const app_path = path.join(url, 'src', 'app', sub_path)
-        const component_path = path.join(app_path, component_upper)
-        const component_ts_path = path.join(component_path, `${component_upper}.component.tsx`)
-        const component_css_path = path.join(component_path, `${component_upper}.sass`)
+    /** Hadnling args  */
+    const component = args[1]
+    const params = args.filter((v, i) => i !== 0 && i !== 1)
 
 
-        /** Create component */
 
-        function createComponent() {
+    if (!component) {
+        console.log(reset.red('\tInvalid name of component'))
+        return
+    }
 
-            fs.mkdir(component_path, err => {
-                if (err) {
-                    console.log(chalk.reset.red('\tCannot create component directory'))
-                    console.log(err)
-                    return
-                }
+    /** Handling 'in' component options */
+    let sub_path = './'
+    params.forEach( param => {
+        if(param.match(/in=.{1,}/))
+            sub_path = param.replace('in=', '')
+    })
 
-                const inludes_css = !args.includes('!css') 
+    const app_path = join(url, 'src', 'app', sub_path)
 
-                createFile(component_ts_path, template.typescript(component_upper, inludes_css))
 
-                if ( inludes_css )
-                    createFile(component_css_path, template.css(component_upper))
-            })
+
+    /** Find valid folder */
+
+    fs.readdir(app_path, err => {
+        if (err) {
+            console.log(reset.red('\tYou are in invalid folder or input folder doesnt exist\n', err))
+            return
         }
 
+        const { styles } = require(join(url, 'modular.json'))
 
-        /** Find valid folder */
+        const component_upper = component.replace(/./, m => m.toUpperCase())
+        const component_path = join(app_path, component_upper)
+        const component_ts_path = join(component_path, `${component_upper}.component.tsx`)
+        const component_css_path = join(component_path, `${component_upper}.${styles.use}`)
 
-        fs.readdir(app_path, err => {
-            if (err) 
-                console.log(chalk.reset.red('\tYou are in invalid folder or input folder doesnt exist'))
-            else
-                createComponent()
+        /** Creating component */
+        fs.mkdir(component_path, err => {
+            if (err) {
+                console.log(reset.red('\tCannot create component directory\n', err))
+                return
+            }
+
+            const inludes_css = !params.includes('!css')
+
+            const css_type = styles.use.match(/^(sass|scss)$/) ? styles.use : 'css'
+            const ts_type = params.includes('functional') ? 'functional' : 'class'
+
+
+            createFile(component_ts_path, template[ts_type](component_upper, inludes_css, css_type))
+
+            if (inludes_css)
+                createFile(component_css_path, template[css_type](component_upper))
+
         })
-    }
-    else 
-        console.log(chalk.reset.red('\tInvalid name of component'))
-}
 
+
+    })
+}
 
 
 module.exports = component
