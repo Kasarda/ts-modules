@@ -52,6 +52,7 @@ module.exports = async (appName, repo) => {
     await executeCommand(`${manager} install`)
     
     console.log(doc)
+    console.log(`${reset.cyan(`cd into ${reset.cyan.underline(appName)}`)}`)
   }
   catch(err){
     console.log(reset.red(`Something is wrong\n`), err)

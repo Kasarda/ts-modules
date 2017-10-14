@@ -10,7 +10,7 @@
   *
   */
 const { reset, cyan, gray } = require('chalk')
-const { version, name } = require('../package.json')
+const { version, author } = require('../package.json')
 
 
 module.exports = reset(`----------------------------------------------------------
@@ -37,5 +37,5 @@ ${cyan(`\tWelcome to Modular CLI \n\tversion ${version}`)}
 \t- ${cyan('$ modular install')} ${gray(' -> Install packages')}
 \t- ${cyan('$ modular <other_options>')} ${gray(' -> Show documentation')}
 
-\t ${gray(`Created by ${name}`)}
+\t ${gray(`Created by ${author.name}`)}
 `)
