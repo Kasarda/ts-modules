@@ -106,7 +106,7 @@ const cli = {
 
     let exlude_string = '\.git'
     exludes.forEach((exlude, index) => {
-      if (!index === 0){
+      if (!(index === 0)){
         exlude_string = exlude_string + '|' + exlude
         return
       }
