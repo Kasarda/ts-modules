@@ -7,7 +7,7 @@ $ modular new App
 $ modular serve
 ```
 ---
-## TypeScript Module
+## TypeScript Modules
 
 ### Animation
 Module provide [animejs](http://animejs.com/documentation/) animation engine and timing functions
@@ -25,25 +25,122 @@ bezier(0, 1, 0, 1)(progress)
 
 steps(5)(progress)
 
-spring(100,7,500)(progress)
+spring(100, 7, 500)(progress)
 ```
 
 ### Parallax
 Module provide simple function to create parallax effects using CSS transform propery and opacity
 ```ts
-import { easings } from 'ts-modules/animation'
-import { Parallax } from 'ts-modules/parallax'
+/// interfaces
+interface ParallaxOptions extends Properties {
+    targets: any
+    duration?: number
 
-Parallax({
-  targets: '#cssSelector .el',
-  progress: progress => easings.easeIn(progress),
-  duration: 300, 
-  translateX: [ 0, 200 ] // from transformX(0px) to transformX(200px),
-  opacity: [ 0, 1, 100, 200 ] // from 0 to 1, but animation start 100px before element is in view and end 200px after is in view
-  deepProgress(scroll_progress, animation_progress){
-    this.innerHTML = scroll_progress
-  }
-  })
+    progress?: (this: any, data: DataArgument) => void
+    timing?: (this: any, data: DataArgument & TimingDataArgument) => number
+    deepProgress?: (this: any, data: DataArgument & DeepProgressDataArgument) => void
+}
+
+
+interface Properties {
+  translateX?: number[] // translateX:  [min_value, max_value, min_value_offset?, max_value_offset?]
+  translateY?: number[]
+  translateZ?: number[]
+  translate?: number[]
+
+  scale?: number[]
+  scaleX?: number[]
+  scaleY?: number[]
+  scaleZ?: number[]
+
+  rotate?: number[]
+  rotateX?: number[]
+  rotateY?: number[]
+  rotateZ?: number[]
+
+  skew?: number[]
+  skewX?: number[]
+  skewY?: number[]
+
+  perspective?: number[]
+
+  opacity?: number[]
+}
+
+interface DataArgument {
+  element: any
+  index: number
+  
+  scrollProgress: number
+  progress?: number
+  timingProgress?: number
+
+  event: ParallaxEvent
+}
+
+interface TimingDataArgument { progress: number }
+interface DeepProgressDataArgument extends TimingDataArgument { timingProgress: number }
+
+interface ParallaxEvent extends Event {
+  scrollTop: number
+  element: any
+  inView: boolean
+  options: ParallaxOptions
+}
+
+///// app.ts
+import { easings } from 'ts-modules/animation'
+import { Parallax, ParallaxOptions  } from 'ts-modules/parallax'
+
+
+
+const options: ParallaxOptions = {
+
+targets: '.box',
+duration: 500, // default is 400
+
+timing: ({ progress }) => easings.easeOutExpo(progress),
+
+progress({ index, scrollProgress }){
+    if( index === 0)
+        this.innerHTML = scrollProgress
+},
+
+
+deepProgress({ progress, timingProgress, scrollProgress }){
+    
+    scrollProgress // progress of scroll
+    /*
+      element is not visible on the screen and is under the screen   - 0
+      element is not visible on the screen and is over the screen    - 1
+
+      this progress can be affected by third and fourth item in Properties array 
+      e.g. transformX: [0, 100, 100, 300] 
+    */
+    progress // progress of animation affected by duration
+    /* 
+        start of animation - 0
+        end of animation   - 1
+    */
+    
+    timingProgress // progress of animation affected by timing() function
+
+},
+
+
+/** 
+ * translateX from 0px to 100px
+ * scrollProgress return 1, 50px before element will be not visible on the screen 
+ * and scrollProgress return more then 0, 200px before element will be visible on the screen
+ */
+translateX: [0, 100, 50, 200],
+opacity: [1, 0]
+
+
+}
+
+Parallax(options)
+
 ```
 
 ### Worker
@@ -74,7 +171,7 @@ worker.read('message from app', data => {
 
 ### React
 Module to provide React, ReactDOM and simple Hash Routing
-```tsx
+```jsx
 import { React, ReactDOM, Router, Routes, Link } from 'ts-modules/react'
 
 import Home from './Home/Home.component'
@@ -104,11 +201,11 @@ class App extends React.Component<any, any>{
       </Routes>
 
 
-        <Link path={/^(home|)$/}><a href="#home"> Home </a></Link>
+        <Link path={/^home|main|$/}><a href="#home"> Home </a></Link>
         <Link path="about" active="someDifClass"><a href="#about"> About </a></Link>
         <Link path="contact"><a href="#contact"> Contact </a></Link>
 
-          // if [path] match location.hash this link will be has class from [active] or by default .active
+          // if [path] match location.hash this link will be has css class from [active] or by default .active
   
       </div>
       )
@@ -116,22 +213,58 @@ class App extends React.Component<any, any>{
 }
 ```
 ---
-## Sass Module
+## Sass Modules
 
 ### Animation
 CSS classes for @keyframe animation
+[animation.sass](https://github.com/kasarda/ts-modules/blob/master/animation.sass)
+
+```sass
+@import '~ts-modules/animation'
+```
+```html
+ <div class="animate easeIn slow zoomOut"></div>
+```
 
 ### Grid
 Bootstrap 4 grid
+[grid.sass](https://github.com/kasarda/ts-modules/blob/master/grid.sass)
 
+```sass
+@import '~ts-modules/grid'
+```
+```html
+ <div class="container">
+    <div class="row">
+      <div class="col-6 col-lg-2"></div>
+      <div class="col col-md-auto"></div>
+      <div class="col-5"></div>
+
+    </div>
+ </div>      
+```
 ### Visibility
 Bootstrap 4 visibility
+[visibility.sass](https://github.com/kasarda/ts-modules/blob/master/visibility.sass)
 
+```sass
+@import '~ts-modules/visibility'
+```
+```html
+ <div class="hidden-xs-up"></div>
+ <div class="text-hide"></div>
+ <div class="invisible"></div>
+```
 ### Normalize
 CSS reset
-
+[normalize.sass](https://github.com/kasarda/ts-modules/blob/master/normalize.sass)
+```sass
+@import '~ts-modules/normalize'
+```
 ### Library
 Sass library
+[lib.sass](https://github.com/kasarda/ts-modules/blob/master/lib.sass)
+
 ```sass
 @import '~ts-modules/lib'
 
@@ -289,4 +422,3 @@ Get version of CLI
 
 ### modular ?\<anything_else>
 Get Documentation
-

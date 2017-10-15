@@ -1,0 +1,38 @@
+{
+  "compileOnSave": true,
+  "compilerOptions": {
+    "allowJs": false,
+    "checkJs": false,
+    "sourceMap": true,
+    "declaration": false,
+
+    "strict": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedParameters": true,
+    "noUnusedLocals": true,
+
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "jsx": "react",
+    "target": "es5",
+    "lib": [
+      "esnext",
+      "es6",
+      "es7",            
+      "dom",
+      "es2016.array.include"    
+    ]
+  },
+  "exclude": [
+    "node_modules",
+    "**/*.spec.ts"
+  ]
+}
+
+
+
+
