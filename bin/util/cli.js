@@ -20,7 +20,7 @@ let filelist = []
 
 
 const cli = {
-  
+
   /**
    * 
    * @method support
@@ -71,7 +71,7 @@ const cli = {
 
     return new Promise((resolve, reject) => {
 
-      if (!commandExists(commands[0])){
+      if (!commandExists(commands[0])) {
         reject()
         return
       }
@@ -106,7 +106,7 @@ const cli = {
 
     let exlude_string = '\.git'
     exludes.forEach((exlude, index) => {
-      if (!(index === 0)){
+      if (!(index === 0)) {
         exlude_string = exlude_string + '|' + exlude
         return
       }
@@ -118,12 +118,12 @@ const cli = {
     files.forEach(file => {
       const isDir = statSync(join(dir, file)).isDirectory()
       const is_not_exludes = !file.match(new RegExp(exlude_string, 'i'))
-      
+
       if (!(isDir && is_not_exludes)) {
         filelist.push(join(dir, file))
         return
       }
-      
+
       filelist = cli.getFilesList(join(dir, file), exludes)
     })
 
