@@ -68,40 +68,40 @@ export interface WebWorkerInterface {
 }
 
 
-export class WebWorker implements WebWorkerInterface  {
+export class WebWorker implements WebWorkerInterface {
     worker: any
     terminated: boolean = false
     sended: string[] = []
     readed: string[] = []
-    
-    constructor(worker: any = self){
+
+    constructor(worker: any = self) {
         this.worker = worker === self ? worker : new worker
     }
 
-    send(name: string, data: any): WebWorkerInterface{
-        this.worker.postMessage({name, data})
+    send(name: string, data: any): WebWorkerInterface {
+        this.worker.postMessage({ name, data })
         this.sended.push(name)
         return this
     }
 
-    read(name: string, callback: (data?: any, event?: Event) => void): WebWorkerInterface{
+    read(name: string, callback: (data?: any, event?: Event) => void): WebWorkerInterface {
         const scope: WebWorkerInterface = this
-        this.worker.addEventListener('message', function(this:any, event: any){
-            if(name === event.data.name){
+        this.worker.addEventListener('message', function (this: any, event: any) {
+            if (name === event.data.name) {
                 callback.call(this, event.data.data, event)
                 scope.readed.push(name)
             }
-    })
+        })
         return this
     }
 
-    failed(listener: (event: Event) => void): WebWorkerInterface{
+    failed(listener: (event: Event) => void): WebWorkerInterface {
         this.worker.addEventListener('error', listener)
         return this
     }
 
-    terminate(): WebWorkerInterface{
-        if(this.worker.terminate){
+    terminate(): WebWorkerInterface {
+        if (this.worker.terminate) {
             this.worker.terminate()
             this.terminated = true
         }
