@@ -22,7 +22,7 @@
  * @return {string} 
  * 
  */
-function importCss(component, css, ext){
+function importCss(component, css, ext) {
     return css === true ? `import './${component}.${ext}'\n` : ''
 }
 
@@ -31,17 +31,17 @@ function importCss(component, css, ext){
 
 module.exports = {
 
-/**
- * 
- * Generate template for class react component using css
- * 
- * @param {string} component 
- * @param {boolean} css 
- * @param {string} ext
- * 
- */
-    
-    class(component, css, ext){
+    /**
+     * 
+     * Generate template for class react component using css
+     * 
+     * @param {string} component 
+     * @param {boolean} css 
+     * @param {string} ext
+     * 
+     */
+
+    class(component, css, ext) {
         return `${importCss(component, css, ext)}import { React } from 'ts-modules/react'
 
 class ${component} extends React.Component<any, any> {
@@ -63,17 +63,17 @@ export default ${component}`
 
 
 
-/**
- * 
- * Generate template for functional react component using css
- * 
- * @param {string} component 
- * @param {boolean} css 
- * @param {string} ext
- * 
- */
+    /**
+     * 
+     * Generate template for functional react component using css
+     * 
+     * @param {string} component 
+     * @param {boolean} css 
+     * @param {string} ext
+     * 
+     */
 
-    functional(component, css, ext){
+    functional(component, css, ext) {
         return `${importCss(component, css, ext)}import { React } from 'ts-modules/react'
 
 const ${component}: React.SFC<any> = () => {
@@ -92,13 +92,13 @@ export default ${component}`
 
 
 
-/**
- * 
- * Generate css template
- * 
- * @param {string} component
- * 
- */
+    /**
+     * 
+     * Generate css template
+     * 
+     * @param {string} component
+     * 
+     */
     css(component) {
         return `
 #${component} h2 {
@@ -111,13 +111,13 @@ export default ${component}`
 
 
 
-/**
- * 
- * Generate sass template
- * 
- * @param {string} component
- * 
- */
+    /**
+     * 
+     * Generate sass template
+     * 
+     * @param {string} component
+     * 
+     */
 
     sass(component) {
         return `@import "~ts-modules/lib"
@@ -131,13 +131,13 @@ export default ${component}`
 
 
 
-/**
- * 
- * Generate scss template
- * 
- * @param {string} component
- * 
- */
+    /**
+     * 
+     * Generate scss template
+     * 
+     * @param {string} component
+     * 
+     */
 
     scss(component) {
         return `@import "~ts-modules/lib";

@@ -1,6 +1,6 @@
 {
   "name": "ts-modules",
-  "version": "3.2.4",
+  "version": "3.2.5@dev",
   "author": {
     "name": "Filip Kasarda",
     "email": "fkasarda@gmail.com"
@@ -28,18 +28,18 @@
     "modular": "bin/main.js"
   },
   "scripts": {
-    "build-source": "node bin/build.js"
+    "build-source": "node bin/main.js"
   },
   "dependencies": {
     "animejs": "^2.2.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "@types/node": "^8.0.34",
-    "@types/react": "^16.0.10",
+    "@types/react": "^16.0.13",
     "@types/react-dom": "^16.0.1",
     "@types/webpack": "^3.0.13",
     "@types/animejs": "^2.0.0",
-    "chalk": "^2.1.0",
+    "chalk": "^2.2.0",
     "command-exists": "^1.2.2",
     "commander": "^2.11.0",
     "cross-spawn": "^5.1.0",

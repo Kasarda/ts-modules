@@ -21,7 +21,7 @@ const manager = choose('yarn', 'npm')
 
 
 module.exports = async (appName, repo) => {
-  try{
+  try {
 
     /**
      * 
@@ -50,11 +50,11 @@ module.exports = async (appName, repo) => {
     console.log(reset.cyan.underline('\n\t Installing packages ...'))
     shell.cd(appName)
     await executeCommand(`${manager} install`)
-    
+
     console.log(doc)
     console.log(`${reset.cyan(`cd into ${reset.cyan.underline(appName)}`)}`)
   }
-  catch(err){
+  catch (err) {
     console.log(reset.red(`Something is wrong\n`), err)
   }
 

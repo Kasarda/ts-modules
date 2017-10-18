@@ -28,9 +28,9 @@ const url = process.cwd()
  *
  */
 
-function createFile(file_path, temp){
+function createFile(file_path, temp) {
     fs.writeFile(file_path, temp, err => {
-        if(err) {
+        if (err) {
             console.log(reset.red(`Cannot create ${red.underline(file_path.replace(url, ''))}\n`), err)
             return
         }
@@ -48,7 +48,7 @@ function createFile(file_path, temp){
  *
  */
 
-function component (args) {
+function component(args) {
 
     /** Hadnling args  */
     const component = args[1]
@@ -63,8 +63,8 @@ function component (args) {
 
     /** Handling 'in' component options */
     let sub_path = './'
-    params.forEach( param => {
-        if(param.match(/in=.{1,}/))
+    params.forEach(param => {
+        if (param.match(/in=.{1,}/))
             sub_path = param.replace('in=', '')
     })
 

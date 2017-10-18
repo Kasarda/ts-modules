@@ -29,7 +29,7 @@ if (!support('node'))
     console.log(reset.red('\tModular require node'))
 
 
-    
+
 else if (!manager)
     console.log(reset.red('\tModular require npm or yarn'))
 
@@ -40,7 +40,7 @@ else if (!support('git'))
 
 
 
-else 
+else
     switch (program.args[0]) {
 
 
@@ -51,7 +51,7 @@ else
          */
         case 'new':
             Init(program.args[1] || 'modular', starter_kit_repo)
-        break
+            break
 
 
 
@@ -62,7 +62,7 @@ else
          * 
          */
         case 'pull':
-      
+
             const repo_arg = program.args[1]
 
             let repo = repo_arg
@@ -70,11 +70,11 @@ else
             const name_match = repo_arg.match(/(\/*[a-zA-Z0-9-_]{1,}(\.git)?)$/)
             const name = name_match ? name_match[0].replace(/^\//, '').replace(/\.git$/, '') : 'modular'
 
-            if ( !repo_arg.includes('https://') && !repo_arg.includes('git@github.com') )
+            if (!repo_arg.includes('https://') && !repo_arg.includes('git@github.com'))
                 repo = `https://github.com/${repo_arg}.git`
-            
+
             Init(program.args[2] || name, repo)
-        break
+            break
 
 
 
@@ -87,7 +87,7 @@ else
         case 'install':
             console.log(reset.cyan.underline('\Installing packages via', manager))
             executeCommand(`${manager} install`)
-        break
+            break
 
 
 
@@ -102,7 +102,7 @@ else
         case 'test':
             console.log(reset.cyan.underline(`\t${program.args[0]} Application`))
             executeCommand(`${manager} run ${program.args[0]}`)
-        break
+            break
 
 
 
@@ -114,7 +114,7 @@ else
          */
         case 'component':
             require('./component')(program.args)
-        break
+            break
 
 
 
