@@ -74,7 +74,7 @@ export function isNaN(obj: any): boolean {
   *
 */
 
-export function error(this: any,...msg: any[]): void {
+export function error(this: any, ...msg: any[]): void {
     console.error.apply(this, msg)
 }
 
