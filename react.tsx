@@ -1,21 +1,21 @@
 /**! @license
- * 
+ *
  * @name React
  * @name ReactDOM
- * 
+ *
  * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
- * 
+ *
  */
 
 
 
 /**
- * 
+ *
  * @module react
- * 
+ *
  * Includes refference to @var React and @var ReactDOM
  * This module includes Hash routing components
  */
@@ -25,9 +25,9 @@ import * as ReactDOM from 'react-dom'
 
 
 /**
- * 
+ *
  * Export dependencies
- * 
+ *
  */
 export { React }
 export { ReactDOM }
@@ -54,9 +54,9 @@ export { ReactDOM }
 
 
 /**
- * 
+ *
  * HashRouting
- * 
+ *
  */
 
 
@@ -139,46 +139,3 @@ export class Link extends React.Component<any, any> {
         )
     }
 }
-
-
-/**
- * 
- * @name HashRouting
- * 
- * import {..., Router, Routes, Link}
- * 
- * class AppComponent extends React.Component<any, any>{
- *  constructor(){
- *      ...
- *      new Router(this) -> create event listener on hash change, update this.state.path on every hash change and trigger method onHashChange
- *  }
- * 
- *  onHashChange(newHash, event){
- *   -> 'this' is AppComponent not Window
- * }
- * 
- * render(){
- *  Router.redirect('home', '') -> if hash will be home, location will be updated to '' hash
- * 
- *  return (
- *      <div id="app">
- *          
- *          <Routes>
- *              <Home path={/^home|main|$/}/>
- *              <About path='about'/>
- *              <NotFound notFound />
- *          <Routes/>
- * 
- *       
- *          <Link path={/^(home|)$/}><a href="#home"> Home </a></Link>
- *          <Link path="about" active="someDifClass"><a href="#about"> About </a></Link>
- *          <Link path="contact"><a href="#contact"> Contact </a></Link>
- *          
- *          -> if [path] match location.hash this link will be has class from [active] or by default .active
- *  
- *      </div>
- *  )
- * }
- * }
- * 
- */
