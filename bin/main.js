@@ -19,7 +19,7 @@ const doc = require('./doc')
 
 program.version(version).usage('<keywords>').parse(process.argv)
 
-const manager = choose('yarn', 'npm')
+const manager = 'npm' //choose('yarn', 'npm')
 const starter_kit_repo = 'https://github.com/kasarda/modular.git'
 
 
@@ -45,9 +45,9 @@ else
 
 
         /**
-         * 
+         *
          * Create new modular project from modular repo and install dependencies
-         * 
+         *
          */
         case 'new':
             Init(program.args[1] || 'modular', starter_kit_repo)
@@ -57,9 +57,9 @@ else
 
 
         /**
-         * 
+         *
          * Pull project from github to specific folder and install dependencies
-         * 
+         *
          */
         case 'pull':
 
@@ -80,9 +80,9 @@ else
 
 
         /**
-         * 
+         *
          * Install dependencies
-         * 
+         *
          */
         case 'install':
             console.log(reset.cyan.underline('\Installing packages via', manager))
@@ -93,9 +93,9 @@ else
 
 
         /**
-         * 
+         *
          * NPM or Yarn commands
-         * 
+         *
          */
         case 'serve':
         case 'build':
@@ -108,9 +108,9 @@ else
 
 
         /**
-         * 
+         *
          * Generating React component
-         * 
+         *
          */
         case 'component':
             require('./component')(program.args)
@@ -119,9 +119,9 @@ else
 
 
         /**
-         * 
+         *
          * Get doc of cli
-         * 
+         *
          */
         default:
             console.log(doc)

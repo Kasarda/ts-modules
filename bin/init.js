@@ -16,7 +16,7 @@ const { reset } = require('chalk')
 const { choose, executeCommand, getFilesList } = require('./util/cli')
 const doc = require('./doc')
 
-const manager = choose('yarn', 'npm')
+const manager = 'npm' // choose('yarn', 'npm')
 
 
 
@@ -24,9 +24,9 @@ module.exports = async (appName, repo) => {
   try {
 
     /**
-     * 
+     *
      * Clone from repo
-     * 
+     *
      */
     console.log(reset.cyan.underline('\t Application is creating'))
     await executeCommand(`git clone ${repo} ${appName}`)
@@ -34,18 +34,18 @@ module.exports = async (appName, repo) => {
 
 
     /**
-     * 
+     *
      * Get list of new files
-     * 
+     *
      */
     const app_dir = join(process.cwd(), appName)
     const list = getFilesList(app_dir, ['node_modules', '\.git'])
     list.forEach(file => console.log(reset.green(`\t+ ${file.replace(app_dir, '')}`)))
 
     /**
-     * 
+     *
      * Install packages
-     * 
+     *
      */
     console.log(reset.cyan.underline('\n\t Installing packages ...'))
     shell.cd(appName)

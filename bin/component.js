@@ -22,9 +22,9 @@ const url = process.cwd()
 /**
  *
  * Write file and handle error
- *  
- * @param {string} file_path 
- * @param {string} temp 
+ *
+ * @param {string} file_path
+ * @param {string} temp
  *
  */
 
@@ -43,7 +43,7 @@ function createFile(file_path, temp) {
 /**
  *
  * Create Component files with templates
- *  
+ *
  * @param {string[]} args -> arguments from process
  *
  */

@@ -22,9 +22,9 @@
     "lib": [
       "esnext",
       "es6",
-      "es7",            
+      "es7",
       "dom",
-      "es2016.array.include"    
+      "es2016.array.include"
     ]
   },
   "exclude": [
