@@ -31,18 +31,21 @@
     "build-source": "node bin/main.js"
   },
   "dependencies": {
-    "animejs": "^2.2.0",
-    "react": "^16.0.0",
-    "react-dom": "^16.0.0",
+    "@types/animejs": "^2.0.0",
     "@types/node": "^8.0.34",
     "@types/react": "^16.0.13",
     "@types/react-dom": "^16.0.1",
     "@types/webpack": "^3.0.13",
-    "@types/animejs": "^2.0.0",
+    "animejs": "^2.2.0",
     "chalk": "^2.2.0",
     "command-exists": "^1.2.2",
     "commander": "^2.11.0",
     "cross-spawn": "^5.1.0",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
     "shelljs": "^0.7.8"
+  },
+  "devDependencies": {
+    "sass-lint": "^1.12.1"
   }
 }
