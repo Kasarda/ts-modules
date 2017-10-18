@@ -1,3 +1,16 @@
+/**
+ * 
+ * JSX
+ * 
+ */
+
+declare namespace JSX {
+  interface IntrinsicElements {
+    'outlet-component': any
+    'hash-link': any,
+  }
+}
+
 
 
 /**
@@ -7,6 +20,8 @@
  */
 
 declare module '*'
+
+
 /**
  * 
  * Mocha Testing
