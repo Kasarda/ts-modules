@@ -1,4 +1,4 @@
-@charset "UTF-8"
+@charset 'UTF-8'
 
 /**! @license
   * lib.sass
@@ -15,20 +15,16 @@ $lg: 992px
 $md: 768px
 $sm: 576px
 
-$PI: 3.141592653589793
-$E: 2.718281828459045
-
-
 =face($font-name, $file-name, $weight: normal, $style: normal)
   @font-face
     font-family: quote($font-name)
-    src: url($file-name + '.ttf') format('truetype')
-    font-weight: $weight
     font-style: $style
+    font-weight: $weight
+    src: url($file-name + '.ttf') format('truetype')
 
 
 
-=center($position:both)
+=center($position: both)
   position: absolute
 
   @if $position == y
@@ -40,20 +36,20 @@ $E: 2.718281828459045
     transform: translate(-50%)
 
   @else
-    top: 50%
     left: 50%
+    top: 50%
     transform: translate(-50%, -50%)
 
 
-=foreground($size: false, $color: false, $weight: false, $lineHeight: false, $style: false)
+=foreground($size: false, $color: false, $weight: false, $line-height: false, $style: false)
   @if $size
     font-size: $size
   @if $color
     color: $color
   @if $weight
     font-weight: $weight
-  @if $lineHeight
-    line-height: $lineHeight
+  @if $line-height
+    line-height: $line-height
   @if $style
     font-style: $style
 
@@ -62,45 +58,44 @@ $E: 2.718281828459045
     @if not $h
       width: $w
     @else if $h == same
-      width: $w
       height: $w
-    @else 
       width: $w
+    @else
       height: $h
+      width: $w
   @else
     @if $h and $h != same
       height: $h
-    
 
-@function _isPosition($val)
+@function is-position($val)
   @return  $val == static or $val == absolute or $val == relative or $val == fixed or $val == sticky
 
-@function _isNotPosition($val)
+@function is-not-position($val)
   @return  $val != static and $val != absolute and $val != relative and $val != fixed and $val != sticky
 
 
 =position($t: false, $l: false, $b: false, $r: false, $pos: relative)
   $position: $pos
-  
-  @if _isPosition($t)
+
+  @if is-position($t)
     $position: $t
-  @else if _isPosition($l)
+  @else if is-position($l)
     $position: $l
-  @else if _isPosition($b)
+  @else if is-position($b)
     $position: $b
-  @else if _isPosition($r)
+  @else if is-position($r)
     $position: $r
 
   position: $position
 
-  @if $t and _isNotPosition($t)
+  @if $t and is-not-position($t)
     top: $t
-  @else if (not $t) and ($b and _isNotPosition($b))
+  @else if (not $t) and ($b and is-not-position($b))
     bottom: $b
 
-  @if $l and _isNotPosition($l)
+  @if $l and is-not-position($l)
     left: $l
-  @else if (not $l) and ($r and _isNotPosition($r))
+  @else if (not $l) and ($r and is-not-position($r))
     right: $r
 
 
@@ -136,7 +131,7 @@ $E: 2.718281828459045
 
 
 
-=only($point, $custom:null)
+=only($point, $custom: null)
   $min: $point
   $max: $custom
 
@@ -186,8 +181,8 @@ $E: 2.718281828459045
   background-repeat: repeat-x
 
 =gradient-directional($start-color: #555, $end-color: #333, $deg: 45deg)
-  background-repeat: repeat-x
   background-image: linear-gradient($deg, $start-color, $end-color)
+  background-repeat: repeat-x
 
 =gradient-x-three-colors($start-color: #00b3ee, $mid-color: #7a43b6, $color-stop: 50%, $end-color: #c3325f)
   background-image: linear-gradient(to right, $start-color, $mid-color $color-stop, $end-color)
@@ -201,5 +196,5 @@ $E: 2.718281828459045
   background-image: radial-gradient(circle, $inner-color, $outer-color)
   background-repeat: no-repeat
 
-=gradient-striped($color: rgba(255,255,255,.15), $angle: 45deg)
+=gradient-striped($color: rgba(255, 255, 255, .15), $angle: 45deg)
   background-image: linear-gradient($angle, $color 25%, transparent 25%, transparent 50%, $color 50%, $color 75%, transparent 75%, transparent)

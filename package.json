@@ -28,7 +28,8 @@
     "modular": "bin/main.js"
   },
   "scripts": {
-    "build-source": "node bin/main.js"
+    "build-source": "node bin/main.js",
+    "lint": "sass-lint --config ./.sass-lint.yml **/*.sass -v -q"
   },
   "dependencies": {
     "@types/animejs": "^2.0.0",
@@ -45,7 +46,5 @@
     "react-dom": "^16.0.0",
     "shelljs": "^0.7.8"
   },
-  "devDependencies": {
-    "sass-lint": "^1.12.1"
-  }
+  "devDependencies": {}
 }
