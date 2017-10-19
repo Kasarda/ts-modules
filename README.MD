@@ -1,6 +1,68 @@
 # ts-modules
 
 TypeScript, Sass modules and CLI for [Modular](https://github.com/kasarda/modular) starter-kit
+
+# Modular
+
+Modular is front-end starter kit using Webpack, React and TypeScript.
+
+```bash
+$ npm i -g ts-modules
+$ modular new App
+$ modular serve
+```
+## Content
+- [Modular includes](#modular-includes)
+- [Ts-modules](#ts-modules)
+  - [TypeScript Modules](#typescript-modules)
+    - [Animation](#animation)
+    - [Parallax](#parallax)
+    - [Worker](#worker)
+    - [React](#react)
+  - [SASS Modules](#sass-modules)
+    - [Animation](#animation-1)
+    - [Grid](#grid)
+    - [Visibility](#visibility)
+    - [Normalize](#normalize)
+    - [SASS library](#library)
+  - [CLI](#cli)
+    - [modular new](#modular-new-folder_name)
+    - [modular pull](#modular-pull-repo-folder_name)
+    - [modular component](#modular-component-name-options)
+    - [modular serve - build - test - install](#modular-serve--build--test--install)
+    - [modular -V](#modular--v)
+    - [modular ...](#modular-anything_else)
+- [Modular.json](#modularjson)
+
+## Modular includes:
+
+- React 16
+- Webpack 3
+- TypeScript 2
+- Sass, Jade/Pug
+- TypeScript Mocha Testing
+- Progressive web app using ServiceWorker, AppCache and manifest.json
+- Babel Polyfill
+- CLI for clone, install, serve or build App or for generating React component
+- [WebWorker](https://github.com/kasarda/ts-modules/blob/master/worker.ts)
+- [Animation engine via animejs](https://github.com/kasarda/ts-modules/blob/master/animation.ts)
+- [Parallax engine](https://github.com/kasarda/ts-modules/blob/master/parallax.ts)
+- [React for ts-modules](https://github.com/kasarda/ts-modules/blob/master/react.tsx)
+- [SASS library](https://github.com/kasarda/ts-modules/blob/master/lib.sass)
+- CSS frameworks
+  - [animation](https://github.com/kasarda/ts-modules/blob/master/animation.sass)
+  - [normalize](https://github.com/kasarda/ts-modules/blob/master/normalize.sass)
+  - [Bootstrap 4 grid](https://github.com/kasarda/ts-modules/blob/master/grid.sass)
+  - [visibility](https://github.com/kasarda/ts-modules/blob/master/visibility.sass)
+- CSS autoprefixer
+- ...
+
+
+
+---
+# Ts-modules
+
+TypeScript, Sass modules and CLI for [Modular](https://github.com/kasarda/modular) starter-kit
 ```bash
 $ npm i -g ts-modules
 $ modular new App
@@ -70,7 +132,7 @@ interface Properties {
 interface DataArgument {
   element: any
   index: number
-  
+
   scrollProgress: number
   progress?: number
   timingProgress?: number
@@ -108,29 +170,29 @@ progress({ index, scrollProgress }){
 
 
 deepProgress({ progress, timingProgress, scrollProgress }){
-    
-    scrollProgress // progress of scroll
+
+    scrollProgress // progress of the scroll
     /*
       element is not visible on the screen and is under the screen   - 0
       element is not visible on the screen and is over the screen    - 1
 
-      this progress can be affected by third and fourth item in Properties array 
-      e.g. transformX: [0, 100, 100, 300] 
+      this progress can be affected by third and fourth item in Properties array
+      e.g. transformX: [0, 100, 100, 300]
     */
     progress // progress of animation affected by duration
-    /* 
-        start of animation - 0
-        end of animation   - 1
+    /*
+        start of the animation - 0
+        end of the animation   - 1
     */
-    
-    timingProgress // progress of animation affected by timing() function
+
+    timingProgress // progress of the animation affected by timing() function
 
 },
 
 
-/** 
+/**
  * translateX from 0px to 100px
- * scrollProgress return 1, 50px before element will be not visible on the screen 
+ * scrollProgress return 1, 50px before element will be not visible on the screen
  * and scrollProgress return more then 0, 200px before element will be visible on the screen
  */
 translateX: [0, 100, 50, 200],
@@ -183,14 +245,14 @@ class App extends React.Component<any, any>{
       super()
       new Router(this) // create event listener on hash change, update this.state.path on every hash change and trigger method onHashChange
   }
- 
+
   onHashChange(newHash, event){
    // 'this' is App not Window
  }
- 
+
  render(){
   Router.redirect('home', '') // if hash will be home, location will be updated to '' hash
- 
+
   return (
     <div id="app">
 
@@ -206,7 +268,7 @@ class App extends React.Component<any, any>{
         <Link path="contact"><a href="#contact"> Contact </a></Link>
 
           // if [path] match location.hash this link will be has css class from [active] or by default .active
-  
+
       </div>
       )
   }
@@ -241,7 +303,7 @@ Bootstrap 4 grid
       <div class="col-5"></div>
 
     </div>
- </div>      
+ </div>
 ```
 ### Visibility
 Bootstrap 4 visibility
@@ -279,10 +341,10 @@ body
 
 .centerX
   +center(x)
-  
+
 .centerY
   +center(y)
-  
+
 .center
   +center
 
@@ -290,8 +352,8 @@ body
 
 h1
  +foreground(1.5em, #444, 400, 1, normal)
- 
- 
+
+
 // Dimension (width=100%, height=same_as_width)
 
 .parent_dimension
@@ -302,21 +364,21 @@ h1
   +dimension(100px, 200px)
 .only-height
   +dimension(false, 200px)
-  
-  
+
+
 // position (top?, left?, bottom?, right?, position=relative)
 
 .top_left_absolute
   +position(100px, 200px, absolute)
-  
-.left_bottom_sticky 
+
+.left_bottom_sticky
   +position(false, 200px, 100px, sticky)
 .left_relative
   +position(100px)
-  
-  
+
+
 // Media query with bootstrap shorthands or custom value
-  
+
 +min(lg)
   h1
    font-size: .8em
@@ -324,15 +386,15 @@ h1
 +max(xs)
   h1
    font-size: .6em
-   
+
 +max(1400px)
-   h2 
+   h2
     font-size: 1em
-  
+
 +only(sm)
   h1
    font-size: .4em
-   
+
 +only(100px, 300px)
   h1
    font-size: .4em
@@ -340,7 +402,7 @@ h1
 
 // Retina media query
 
-.bg   
+.bg
   +retina(img-1x.jpg, img-2x.jpg, 100px, 150px)
 
 +retina
@@ -363,7 +425,7 @@ h1
 .grad_radial
   +gradient-radial(red, green)
 .grad_striped
-  +gradient-striped(red,45deg)  
+  +gradient-striped(red,45deg)
 
 ```
 ---
@@ -377,7 +439,7 @@ $ modular new     // default <folder_name> is 'modular'
 ```
 ### modular pull \<repo> ?<folder_name>
 Clone \<repo> and install dependencies
-  
+
 ```bash
 $ modular pull  https://github.com/kasarda/ts-modules.git   // <folder_name> is 'ts-modules'
 $ modular pull  git@github.com:kasarda/ts-modules.git       App
@@ -408,8 +470,8 @@ $ modular component Street in=Contact/Address !css functional
 + app/Contact/Address/Street/Street.component.tsx
 ```
 ### modular serve | build | test | install
-Run NPM or Yarn command
-  
+Run NPM command
+
 ```bash
 $ modular serve
 $ modular build
@@ -418,7 +480,62 @@ $ modular install
 ```
 
 ### modular -V
-Get version of CLI
+Get version of the CLI
 
 ### modular ?\<anything_else>
 Get Documentation
+
+---
+# Modular.json
+Configuration for Webpack
+
+```ts
+{
+    "entry": "./src/app.tsx", // Entry point of the application
+    "markup": "./src/index.jade", // possible templates are .jade | .pug | .html with ejs
+    "favicon": "./src/assets/favicon.ico",
+    "styles": "sass", // possible values are sass | scss | css
+        // if value is sass or scss, sass-loader will be applied
+        // if we generating component using $ modular component, css template will be depend on this property
+
+    "server": { // configuration for dev server
+        "port": 8080,
+        "https": false,
+        "openInBrowser": true
+    },
+
+    "progressive": { // Configuration of the Progressive Web App using offline-plugin for Webpack
+        "active": false, // if false Service Worker will be not active
+        "entry": null, // entry point of yours own Service Worker file
+        "main": [ // main files to provide in SW
+            "app.bundle.css",
+            "app.bundle.js"
+        ],
+        "additional": [ // additional files to provide in SW
+            ":externals:"
+        ],
+        "optional": [ // optional files to provide in SW
+            ":rest:"
+        ],
+        "excludes": [] // exclude files
+    },
+
+    "sub": [ // Creating multiple entries
+      /*
+        If we add new entry, inject option in HTML Webpack plugin will be set to false,
+        so we have to set js, css and favicon in all templates by hand
+      */
+
+      {
+        "entry": "./src/about/about.tsx", // new entry point, name of the entry point will be filename so output will be "about.bundle.js"
+        "markup": "./src/about/about.jade" // entry point of the template, output name will be filename + ".html" so "about.html"
+      },
+
+       {
+        "entry": "./src/contact/contact.tsx", // "contact.bundle.js"
+        "markup": "./src/contact/something.jade" // "something.html"
+      }
+
+    ]
+}
+```

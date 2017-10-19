@@ -85,7 +85,7 @@ function component(args) {
         const component_upper = component.replace(/./, m => m.toUpperCase())
         const component_path = join(app_path, component_upper)
         const component_ts_path = join(component_path, `${component_upper}.component.tsx`)
-        const component_css_path = join(component_path, `${component_upper}.${styles.use}`)
+        const component_css_path = join(component_path, `${component_upper}.${styles}`)
 
         /** Creating component */
         fs.mkdir(component_path, err => {
@@ -96,7 +96,7 @@ function component(args) {
 
             const inludes_css = !params.includes('!css')
 
-            const css_type = styles.use.match(/^(sass|scss)$/) ? styles.use : 'css'
+            const css_type = styles.match(/^(sass|scss)$/) ? styles : 'css'
             const ts_type = params.includes('functional') ? 'functional' : 'class'
 
 
