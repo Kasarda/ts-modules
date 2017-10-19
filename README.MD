@@ -1,4 +1,4 @@
-# ts-modules
+# Ts modules
 
 TypeScript, Sass modules and CLI for [Modular](https://github.com/kasarda/modular) starter-kit
 
