@@ -17,25 +17,24 @@ module.exports = reset(`--------------------------------------------------------
 ${cyan(`\tWelcome to Modular CLI \n\tversion ${version}`)}
 ----------------------------------------------------------
 
-\t- ${cyan('$ modular new ?[<name>]')} ${gray(' -> Clone modular application and install all packages into <name> folder')}
-\t- ${cyan('$ modular pull <repo> ?[<name>]')} ${gray(' -> Clone application from <repo> and install all packages into <name> folder')}
+\t- ${cyan('$ modular new [<name>] [-yarn]')} ${gray(' -> Clone modular application and install all packages into <name> folder')}
+\t- ${cyan('$ modular pull <repo> [<name>] [-yarn]')} ${gray(' -> Clone application from <repo> and install all packages into <name> folder')}
 \t\t- ${cyan(`<repo> ${gray('-> SSH, HTTPS or username/project')}`)}
 \t\t\t- ${cyan(`example: $ modular pull kasarda/modular newApplication`)}
 \t\t\t- ${cyan(`example: $ modular pull https://github.com/kasarda/modular.git newApplication`)}
 \t\t\t- ${cyan(`example: $ modular pull git@github.com:kasarda/modular.git newApplication`)}
-\t- ${cyan('$ modular serve')} ${gray(' -> Serving application')}
-\t- ${cyan('$ modular build')} ${gray(' -> Create production')}
-\t- ${cyan('$ modular test')} ${gray(' -> Run mocha testing')}
-\t- ${cyan('$ modular -V')} ${gray(' -> Get version of CLI')}
-\t- ${cyan('$ modular component <name> ?[<options>]')} ${gray(' -> Generate react component with css')}
-\t\t-  ${cyan('?[<options>]')}
+\t- ${cyan('$ modular serve [-yarn]')} ${gray(' -> Serving application')}
+\t- ${cyan('$ modular build [-yarn]')} ${gray(' -> Create production')}
+\t- ${cyan('$ modular test [-yarn]')} ${gray(' -> Run mocha testing')}
+\t- ${cyan('$ modular install [-yarn]')} ${gray(' -> Install packages')}
+\t- ${cyan('$ modular component <name> [<options>]')} ${gray(' -> Generate react component with css')}
+\t\t-  ${cyan('[<options>]')}
 \t\t\t- ${cyan('!css')} ${gray(' -> Create component without css file')}
 \t\t\t- ${cyan('functional')} ${gray(' -> Create component using function not class')}
 \t\t\t- ${cyan('in=<sup_component>')} ${gray(' -> Create sub component')}
 \t\t\t ${cyan('example: $ modular component phone in=contact !css')}
 \t\t\t ${cyan('example: $ modular component street in=contact/address functional')}
-\t- ${cyan('$ modular install')} ${gray(' -> Install packages')}
+\t- ${cyan('$ modular -V')} ${gray(' -> Get version of CLI')}
 \t- ${cyan('$ modular <other_options>')} ${gray(' -> Show documentation')}
-
 \t ${gray(`Created by ${author.name}`)}
 `)

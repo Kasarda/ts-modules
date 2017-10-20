@@ -13,14 +13,20 @@
 const shell = require('shelljs')
 const { join } = require('path')
 const { reset } = require('chalk')
-const { choose, executeCommand, getFilesList } = require('./util/cli')
+const { choose, executeCommand, getFilesList, support } = require('./cli')
 const doc = require('./doc')
 
-const manager = 'npm' // choose('yarn', 'npm')
+module.exports = async (appName, repo, rawArgs) => {
+  const manager = rawArgs[rawArgs.length - 1] === '-yarn' ? 'yarn' : 'npm'
 
-
-
-module.exports = async (appName, repo) => {
+  if (!support('git')) {
+    console.log(reset.red(`\tModular require ${reset.red.underline('Git')}\nyou can install git from https://git-scm.com/`))
+    return
+  }
+  else if(manager === 'yarn' && !support('yarn')) {
+    console.log(reset.red(`\tYarn is not installed in your machine, please run ${reset.red.underline('$ npm i -g yarn')}`))
+    return
+  }
   try {
 
     /**
@@ -52,7 +58,7 @@ module.exports = async (appName, repo) => {
     await executeCommand(`${manager} install`)
 
     console.log(doc)
-    console.log(`${reset.cyan(`cd into ${reset.cyan.underline(appName)}`)}`)
+    console.log(`${reset.cyan(`\tcd into ${reset.cyan.underline(appName)}`)}`)
   }
   catch (err) {
     console.log(reset.red(`Something is wrong\n`), err)

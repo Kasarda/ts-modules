@@ -1,4 +1,4 @@
-# Ts modules
+# Ts-modules
 
 TypeScript, Sass modules and CLI for [Modular](https://github.com/kasarda/modular) starter-kit
 
@@ -13,7 +13,7 @@ $ modular serve
 ```
 ## Content
 - [Modular includes](#modular-includes)
-- [Ts-modules](#ts-modules)
+- [Ts-modules](#ts-modules-1)
   - [TypeScript Modules](#typescript-modules)
     - [Animation](#animation)
     - [Parallax](#parallax)
@@ -430,14 +430,14 @@ h1
 ```
 ---
 ## CLI
-### modular new ?<folder_name>
+### modular new [\<folder_name>] [-yarn]
 Clone modular starter-kit and install dependencies
 
 ```bash
 $ modular new App
 $ modular new     // default <folder_name> is 'modular'
 ```
-### modular pull \<repo> ?<folder_name>
+### modular pull \<repo> [\<folder_name>] [-yarn]
 Clone \<repo> and install dependencies
 
 ```bash
@@ -445,9 +445,9 @@ $ modular pull  https://github.com/kasarda/ts-modules.git   // <folder_name> is 
 $ modular pull  git@github.com:kasarda/ts-modules.git       App
 $ modular pull  kasarda/ts-modules                          // <folder_name> is 'ts-modules'
 ```
-### modular component \<name> ?\<options>
+### modular component \<name> [\<options>]
 Create React component with css file
-#### ?\<options>
+#### [\<options>]
 - !css - Create component without css file
 - functional - Create component using function not class
 - in=<parent_component> - Create sub component
@@ -469,20 +469,20 @@ $ modular component Street in=Contact/Address !css functional
 
 + app/Contact/Address/Street/Street.component.tsx
 ```
-### modular serve | build | test | install
+### modular serve | build | test | install [-yarn]
 Run NPM command
 
 ```bash
 $ modular serve
 $ modular build
 $ modular test
-$ modular install
+$ modular install -yarn
 ```
 
 ### modular -V
 Get version of the CLI
 
-### modular ?\<anything_else>
+### modular [\<anything_else>]
 Get Documentation
 
 ---
