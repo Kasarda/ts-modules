@@ -23,7 +23,7 @@
     "type": "git",
     "url": "https://github.com/kasarda/ts-modules.git"
   },
-  "main": "./app.js",
+  "main": "",
   "bin": {
     "modular": "bin/main.js"
   },
