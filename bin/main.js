@@ -60,13 +60,10 @@ else
 
             let repo = repo_arg
 
-            const name_match = repo_arg.match(/(\/*[a-zA-Z0-9-_]{1,}(\.git)?)$/)
-            const name = name_match ? name_match[0].replace(/^\//, '').replace(/\.git$/, '') : 'modular'
-
             if (!repo_arg.includes('https://') && !repo_arg.includes('git@'))
                 repo = `https://github.com/${repo_arg}.git`
 
-            Init(program.args[2] || name, repo, program.rawArgs)
+            Init(program.args[2], repo, program.rawArgs)
             break
 
 

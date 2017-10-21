@@ -35,7 +35,7 @@ module.exports = async (appName, repo, rawArgs) => {
      *
      */
     console.log(reset.cyan.underline('\t Application is creating'))
-    await executeCommand(`git clone ${repo} ${appName}`)
+    await executeCommand(appName ? `git clone ${repo} ${appName}` : `git clone ${repo}`)
 
 
 
