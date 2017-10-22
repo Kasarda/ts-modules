@@ -3,13 +3,13 @@
   "compilerOptions": {
     "allowJs": true,
     "checkJs": true,
-    "sourceMap": true,
+    "sourceMap": false,
     "declaration": false,
 
-    "strict": false,
-    "noImplicitReturns": false,
-    "noFallthroughCasesInSwitch": false,
-    "noUnusedParameters": false,
+    "strict": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedParameters": true,
     "noUnusedLocals": true,
 
     "module": "commonjs",
@@ -20,16 +20,12 @@
     "jsx": "react",
     "target": "es5",
     "lib": [
-      "esnext",
-      "es6",
-      "es7",
-      "dom",
-      "es2016.array.include"
+      "es2016",
+      "dom"
     ]
   },
   "exclude": [
-    "node_modules",
-    "**/*.spec.ts"
+    "node_modules"
   ]
 }
 

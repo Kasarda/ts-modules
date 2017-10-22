@@ -1,44 +1,4 @@
 /**! @license
- *
- * @name React
- * @name ReactDOM
- *
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
-
-/**
- *
- * @module react
- *
- * Includes refference to @var React and @var ReactDOM
- * This module includes Hash routing components
- */
-
-import * as React from 'react'
-import * as ReactDOM from 'react-dom'
-
-
-/**
- *
- * Export dependencies
- *
- */
-export { React }
-export { ReactDOM }
-
-
-
-
-
-
-
-/**! @license
   * react.tsx
   *
   * @name Router
@@ -51,6 +11,16 @@ export { ReactDOM }
   * Copyright (c) 2017-Present, Filip Kasarda
   *
   */
+
+/**
+ *
+ * @module react
+ *
+ * This module includes Hash routing components
+ */
+
+import * as React from 'react'
+
 
 
 /**

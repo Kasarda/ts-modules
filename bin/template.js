@@ -12,15 +12,15 @@
 
 /**
  *
- * Get import statemant in typescript template 
+ * Get import statemant in typescript template
  * of css file or empty string
- * 
+ *
  * @function importCss
  * @param {string} component
  * @param {boolean} css
  * @param {string} ext
- * @return {string} 
- * 
+ * @return {string}
+ *
  */
 function importCss(component, css, ext) {
     return css === true ? `import './${component}.${ext}'\n` : ''
@@ -32,29 +32,30 @@ function importCss(component, css, ext) {
 module.exports = {
 
     /**
-     * 
+     *
      * Generate template for class react component using css
-     * 
-     * @param {string} component 
-     * @param {boolean} css 
+     *
+     * @param {string} component
+     * @param {boolean} css
      * @param {string} ext
-     * 
+     *
      */
 
     class(component, css, ext) {
-        return `${importCss(component, css, ext)}import { React } from 'ts-modules/react'
+        return `${importCss(component, css, ext)}import * as React from 'react'
+import { connect } from 'react-redux'
 
-class ${component} extends React.Component<any, any> {
+class ${component} extends React.Component<{}> {
     render() {
         return (
             <div id="${component}">
-                <h2>${component} work!</h2>
+                <h2>${component} works!</h2>
             </div>
         )
     }
 }
 
-export default ${component}`
+export default connect()(${component})`
     },
 
 
@@ -64,27 +65,28 @@ export default ${component}`
 
 
     /**
-     * 
+     *
      * Generate template for functional react component using css
-     * 
-     * @param {string} component 
-     * @param {boolean} css 
+     *
+     * @param {string} component
+     * @param {boolean} css
      * @param {string} ext
-     * 
+     *
      */
 
     functional(component, css, ext) {
-        return `${importCss(component, css, ext)}import { React } from 'ts-modules/react'
+        return `${importCss(component, css, ext)}import * as React from 'react'
+import { connect } from 'react-redux'
 
-const ${component}: React.SFC<any> = () => {
+const ${component}: React.SFC<{}> = () => {
     return (
         <div id="${component}">
-            <h2>${component} work!</h2>
+            <h2>${component} works!</h2>
         </div>
     )
 }
 
-export default ${component}`
+export default connect()(${component})`
 
     },
 
@@ -93,11 +95,11 @@ export default ${component}`
 
 
     /**
-     * 
+     *
      * Generate css template
-     * 
+     *
      * @param {string} component
-     * 
+     *
      */
     css(component) {
         return `
@@ -112,11 +114,11 @@ export default ${component}`
 
 
     /**
-     * 
+     *
      * Generate sass template
-     * 
+     *
      * @param {string} component
-     * 
+     *
      */
 
     sass(component) {
@@ -132,11 +134,11 @@ export default ${component}`
 
 
     /**
-     * 
+     *
      * Generate scss template
-     * 
+     *
      * @param {string} component
-     * 
+     *
      */
 
     scss(component) {
