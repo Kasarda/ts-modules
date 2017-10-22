@@ -1,6 +1,6 @@
 {
   "name": "ts-modules",
-  "version": "3.5.1",
+  "version": "3.5.2",
   "author": {
     "name": "Filip Kasarda",
     "email": "fkasarda@gmail.com"
@@ -25,7 +25,8 @@
   },
   "main": "",
   "bin": {
-    "modular": "bin/main.js"
+    "modular": "bin/main.js",
+    "md": "bin/main.js"
   },
   "scripts": {
     "build-source": "node bin/main.js"
