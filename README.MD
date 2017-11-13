@@ -18,7 +18,7 @@ $ modular serve
     - [Animation](#animation)
     - [Parallax](#parallax)
     - [Worker](#worker)
-    - [React](#react)
+    - [Hash Router](#hash-router-for-react)
   - [SASS Modules](#sass-modules)
     - [Animation](#animation-1)
     - [Grid](#grid)
@@ -47,7 +47,7 @@ $ modular serve
 - [WebWorker](https://github.com/kasarda/ts-modules/blob/master/worker.ts)
 - [Animation engine via animejs](https://github.com/kasarda/ts-modules/blob/master/animation.ts)
 - [Parallax engine](https://github.com/kasarda/ts-modules/blob/master/parallax.ts)
-- [React for ts-modules](https://github.com/kasarda/ts-modules/blob/master/react.tsx)
+- [Hash Router](https://github.com/kasarda/ts-modules/blob/master/router.ts)
 - [SASS library](https://github.com/kasarda/ts-modules/blob/master/lib.sass)
 - CSS frameworks
   - [animation](https://github.com/kasarda/ts-modules/blob/master/animation.sass)
@@ -231,47 +231,51 @@ worker.read('message from app', data => {
 })
 ```
 
-### React
-Module to provide React, ReactDOM and simple Hash Routing
+### Hash Router for React
+Module to provide simple Hash Routing
 ```jsx
-import { React, ReactDOM, Router, Routes, Link } from 'ts-modules/react'
+import * as React from 'react'
+import * as ReactDOM from 'react-dom'
+
+import { Router, Routes, Link } from 'ts-modules/react'
 
 import Home from './Home/Home.component'
 import About from './About/About.component'
 import NotFound from './NotFound/NotFound.component'
 
 class App extends React.Component<any, any>{
-  constructor(){
-      super()
-      new Router(this) // create event listener on hash change, update this.state.path on every hash change and trigger method onHashChange
-  }
+    constructor() {
+        super()
+        new Router(this) // create event listener on hash change, update this.state.path on every hash change and trigger method onHashChange
+    }
 
-  onHashChange(newHash, event){
-   // 'this' is App not Window
- }
+    onHashChange(newHash, event) {
+        // 'this' is App not Window
+    }
 
- render(){
-  Router.redirect('home', '') // if hash will be home, location will be updated to '' hash
+    render() {
+        Router.redirect('home', '') // if hash will be home, location will be updated to '' hash
 
-  return (
-    <div id="app">
+        return (
+            <div id="app">
 
-      <Routes>
-        <Home path={/^home|main|$/} />
-        <About path='about' />
-        <NotFound notFound />
-      </Routes>
+                <Routes>
+                    <Home path={/^home|main|$/} />
+                    <About path='about' />
+                    <NotFound notFound />
+                </Routes>
 
 
-        <Link path={/^home|main|$/}><a href="#home"> Home </a></Link>
-        <Link path="about" active="someDifClass"><a href="#about"> About </a></Link>
-        <Link path="contact"><a href="#contact"> Contact </a></Link>
+                <Link path={/^home|main|$/}><a href="#home"> Home </a></Link>
+                <Link path="about" active="someDifClass"><a href="#about"> About </a></Link>
+                <Link path="contact"><a href="#contact"> Contact </a></Link>
 
-          // if [path] match location.hash this link will be has css class from [active] or by default .active
+                {// if [path] match location.hash this link will be has css class from [active] or by default .active
+                }
 
-      </div>
-      )
-  }
+            </div>
+        )
+    }
 }
 ```
 ---
