@@ -1,6 +1,6 @@
 # Ts-modules
 
-TypeScript, Sass modules and CLI for [Modular](https://github.com/kasarda/modular) starter-kit
+TypeScript, Css/Sass modules and CLI for [Modular](https://github.com/kasarda/modular) starter-kit
 
 # Modular
 
@@ -50,10 +50,10 @@ $ modular serve
 - [Hash Router](https://github.com/kasarda/ts-modules/blob/master/router.ts)
 - [SASS library](https://github.com/kasarda/ts-modules/blob/master/lib.sass)
 - CSS frameworks
-  - [animation](https://github.com/kasarda/ts-modules/blob/master/animation.sass)
-  - [normalize](https://github.com/kasarda/ts-modules/blob/master/normalize.sass)
-  - [Bootstrap 4 grid](https://github.com/kasarda/ts-modules/blob/master/grid.sass)
-  - [visibility](https://github.com/kasarda/ts-modules/blob/master/visibility.sass)
+  - [animation](https://github.com/kasarda/ts-modules/blob/master/animation.css)
+  - [normalize](https://github.com/kasarda/ts-modules/blob/master/normalize.css)
+  - [Bootstrap 4 grid](https://github.com/kasarda/ts-modules/blob/master/grid.css)
+  - [visibility](https://github.com/kasarda/ts-modules/blob/master/visibility.css)
 - CSS autoprefixer
 - ...
 
