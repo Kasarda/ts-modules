@@ -16,7 +16,7 @@
  *
  * @module router
  *
- * This module includes Hash routing components
+ * This module includes Hash routing for react
  */
 
 
@@ -32,11 +32,10 @@ import * as React from 'react'
 
 const getPath = (): string => location.hash.replace('#', '')
 const isValidPath = (path: any): any => (typeof path === 'string' && getPath() === path) || (path instanceof RegExp && getPath().match(path))
-
+const returnArray = (obj: any): any[] => obj instanceof Array ? obj : [obj]
 const title_elem: any = document.querySelector('title')
 const default_title: string = title_elem.innerHTML
 const setTitle = (title: string): any => title_elem.innerHTML = title || default_title
-
 export class Router {
 
     constructor(scope: any) {
@@ -50,9 +49,9 @@ export class Router {
         })
     }
 
-    static getPath() { return getPath() }
+    static getPath(): string { return getPath() }
 
-    static redirect(hash: any, redirectTo?: string) {
+    static redirect(hash: any, redirectTo?: string): void {
 
         if (isValidPath(hash) && typeof redirectTo === 'string')
             location.hash = redirectTo
@@ -61,7 +60,7 @@ export class Router {
 
     }
 
-    static render(templates: any[], notFound: any) {
+    static render(templates: any[], notFound: any): any {
         let template: any
         templates.forEach(temp => {
             if (!template && isValidPath(temp.props.path))
@@ -72,24 +71,32 @@ export class Router {
             setTitle(template.props.title)
         else if (notFound)
             setTitle(notFound.props.title)
+        else
+            setTitle(default_title)
+
 
         return template || notFound
     }
 
 }
 
-export function Routes({ children }: any) {
+export function Routes({ children }: any): any {
 
-    const childs: any[] = children instanceof Array ? children : [children]
+    const childs: any[] = returnArray(children)
     const notFound: any = childs.filter(temp => temp.props.notFound)[0]
-    return Router.render(childs, notFound)
+    return Router.render(childs, notFound) || ''
 }
 
-export function Link(props: any) {
+export function Link({ children, path, className }: any): any {
 
-    let className: string = ''
-    if (isValidPath(props.path))
-        className = props.className as string || 'active'
+    let activeClass: string = ''
+    if (isValidPath(path))
+        activeClass = className as string || 'active'
 
-    return props.children
+    const childs = returnArray(children)
+    return (
+        <router-link class={activeClass}>
+            {childs}
+        </router-link>
+    )
 }

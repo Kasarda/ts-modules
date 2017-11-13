@@ -19,7 +19,7 @@ $ modular serve
     - [Parallax](#parallax)
     - [Worker](#worker)
     - [Hash Router](#hash-router-for-react)
-  - [SASS Modules](#sass-modules)
+  - [CSS Modules](#css-modules)
     - [Animation](#animation-1)
     - [Grid](#grid)
     - [Visibility](#visibility)
@@ -279,11 +279,11 @@ class App extends React.Component<any, any>{
 }
 ```
 ---
-## Sass Modules
+## CSS Modules
 
 ### Animation
 CSS classes for @keyframe animation
-[animation.sass](https://github.com/kasarda/ts-modules/blob/master/animation.sass)
+[animation.css](https://github.com/kasarda/ts-modules/blob/master/animation.css)
 
 ```sass
 @import '~ts-modules/animation'
@@ -294,7 +294,7 @@ CSS classes for @keyframe animation
 
 ### Grid
 Bootstrap 4 grid
-[grid.sass](https://github.com/kasarda/ts-modules/blob/master/grid.sass)
+[grid.css](https://github.com/kasarda/ts-modules/blob/master/grid.css)
 
 ```sass
 @import '~ts-modules/grid'
@@ -310,8 +310,8 @@ Bootstrap 4 grid
  </div>
 ```
 ### Visibility
-Bootstrap 4 visibility
-[visibility.sass](https://github.com/kasarda/ts-modules/blob/master/visibility.sass)
+Bootstrap 4 alpha visibility
+[visibility.css](https://github.com/kasarda/ts-modules/blob/master/visibility.css)
 
 ```sass
 @import '~ts-modules/visibility'
@@ -323,7 +323,7 @@ Bootstrap 4 visibility
 ```
 ### Normalize
 CSS reset
-[normalize.sass](https://github.com/kasarda/ts-modules/blob/master/normalize.sass)
+[normalize.css](https://github.com/kasarda/ts-modules/blob/master/normalize.css)
 ```sass
 @import '~ts-modules/normalize'
 ```

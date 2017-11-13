@@ -1,3 +1,14 @@
+/**
+ *
+ * JSX
+ *
+ */
+
+declare namespace JSX {
+  interface IntrinsicElements {
+    "router-link": any
+  }
+}
 
 /**
  *

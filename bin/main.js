@@ -118,9 +118,7 @@ else
             let install_global = use_manager === 'yarn' ? 'yarn global add' : 'npm i -g'
             executeCommand(`${install_global} ts-modules`)
             break
-        case 'log':
-            console.log(use_manager)
-        break
+
 
         /**
          *
