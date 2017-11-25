@@ -96,7 +96,7 @@ export function error(this: any, ...msg: any[]): void {
   * {Random_letter}            -> rand('abcdefghijkl')
   * {Random_value_from_object} -> rand( {a: 'some', b: 'value'} )
   *
-  * In {Range} the third param is @type {boolean} 
+  * In {Range} the third param is @type {boolean}
   * if value will be true number will be rounded
   *
 */
@@ -187,7 +187,7 @@ export function inView(elem: HTMLElement, offset: number = 0): boolean {
   *
   * @function setStyle
   * Set style on element
-  * This function handle css prefixs 
+  * This function handle css prefixs
   * and @param styles could be @type {plainObject} to set multiple styles
   *
 */
