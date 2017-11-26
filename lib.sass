@@ -100,7 +100,7 @@ $sm: 576px
 
 
 
-=min($point)
+=min($point, $height: null)
   $width: $point
   @if $point == xl
     $width: $xl
@@ -111,10 +111,14 @@ $sm: 576px
   @else if $point == sm
     $width: $sm
 
-  @media (min-width: $width)
-    @content
+  @if $height
+    @media (min-width: $width) and (min-height: $height)
+      @content
+  @else
+    @media (min-width: $width)
+      @content
 
-=max($point)
+=max($point, $height: null)
 
   $width: $point
   @if $point == xs
@@ -126,10 +130,24 @@ $sm: 576px
   @else if $point == lg
     $width: $xl - 1
 
-  @media (max-width: $width)
+  @if $height
+    @media (max-width: $width) and (max-height: $height)
+      @content
+  @else
+    @media (max-width: $width)
+      @content
+
+=minHeight($height)
+  @media (min-height: $height)
     @content
 
+=maxHeight($height)
+  @media (max-height: $height)
+    @content
 
+=onlyHeight($min, $max)
+  @media (min-height: $min) and (max-height: $max)
+    @content
 
 =only($point, $custom: null)
   $min: $point
