@@ -5,4 +5,106 @@
  * LICENSE file in the root directory of this source tree.
  *
  * Copyright (c) 2017-Present, Filip Kasarda */
-.flex{display:flex}.inline-flex{display:inline-flex}.flex-center{justify-content:center;align-items:center}.justify-stretch{justify-content:stretch}.justify-around{justify-content:space-around}.justify-between{justify-content:space-between}.justify-center{justify-content:center}.justify-start{justify-content:flex-start}.justify-end{justify-content:flex-end}.align-stretch{align-items:space-stretch}.align-center{align-items:center}.align-start{align-items:flex-start}.align-end{align-items:flex-end}.align-content-stretch{align-content:stretch}.align-content-around{align-content:space-around}.align-content-between{align-content:space-between}.align-content-center{align-content:center}.align-content-start{align-content:flex-start}.align-content-end{align-content:flex-end}.wrap{flex-wrap:wrap}.nowrap{flex-wrap:nowrap}.wrap-reverse{flex-wrap:wrap-reverse}.direction-row{flex-direction:row}.direction-row-reverse{flex-direction:row-reverse}.direction-col{flex-direction:column}.direction-col-reverse{flex-direction:column-reverse}.align-self-center{align-self:center}.align-self-start{align-self:flex-start}.align-self-end{align-self:flex-end}
+.flex {
+    display:flex
+}
+.inline-flex {
+    display:inline-flex
+}
+
+
+.flex-center {
+    justify-content:center;align-items:center
+}
+
+
+.justify-stretch {
+    justify-content:stretch
+}
+.justify-around {
+    justify-content:space-around
+}
+.justify-between {
+    justify-content:space-between
+}
+.justify-center {
+    justify-content:center
+}
+.justify-start {
+    justify-content:flex-start
+}
+.justify-end {
+    justify-content:flex-end
+}
+
+
+.align-stretch {
+    align-items:space-stretch
+}
+.align-center {
+    align-items:center
+}
+.align-start {
+    align-items:flex-start
+}
+.align-end {
+    align-items:flex-end
+}
+
+
+
+.align-content-stretch {
+    align-content:stretch
+}
+.align-content-around {
+    align-content:space-around
+}
+.align-content-between {
+    align-content:space-between
+}
+.align-content-center {
+    align-content:center
+}
+.align-content-start {
+    align-content:flex-start
+}
+.align-content-end {
+    align-content:flex-end
+}
+
+
+
+.wrap {
+    flex-wrap:wrap
+}
+.nowrap {
+    flex-wrap:nowrap
+}
+.wrap-reverse {
+    flex-wrap:wrap-reverse
+}
+
+
+.direction-row {
+    flex-direction:row
+}
+.direction-row-reverse {
+    flex-direction:row-reverse
+}
+.direction-col {
+    flex-direction:column
+}
+.direction-col-reverse {
+    flex-direction:column-reverse
+}
+
+
+.align-self-center {
+    align-self:center
+}
+.align-self-start {
+    align-self:flex-start
+}
+.align-self-end {
+    align-self:flex-end
+}

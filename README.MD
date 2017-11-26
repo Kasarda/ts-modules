@@ -289,7 +289,7 @@ CSS classes for @keyframe animation
 @import '~ts-modules/animation'
 ```
 ```html
- <div class="animate easeIn slow zoomOut"></div>
+ <div class="animate ease-in slow zoom-out"></div>
 ```
 
 ### Grid
