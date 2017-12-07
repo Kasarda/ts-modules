@@ -14,7 +14,8 @@
 
 
 .flex-center {
-    justify-content:center;align-items:center
+    justify-content:center;
+    align-items:center
 }
 
 
@@ -39,7 +40,7 @@
 
 
 .align-stretch {
-    align-items:space-stretch
+    align-items:stretch
 }
 .align-center {
     align-items:center
