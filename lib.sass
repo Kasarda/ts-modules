@@ -149,7 +149,7 @@ $sm: 576px
     $width: $sm
 
   @if $height
-    @media (min-width: $width) or (min-height: $height)
+    @media (min-width: $width), (min-height: $height)
       @content
   @else
     @media (min-width: $width)
@@ -168,7 +168,7 @@ $sm: 576px
     $width: $xl - 1
 
   @if $height
-    @media (max-width: $width) or (max-height: $height)
+    @media (max-width: $width), (max-height: $height)
       @content
   @else
     @media (max-width: $width)
