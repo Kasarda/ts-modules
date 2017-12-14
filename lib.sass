@@ -137,6 +137,44 @@ $sm: 576px
     @media (max-width: $width)
       @content
 
+=minor($point, $height: null)
+  $width: $point
+  @if $point == xl
+    $width: $xl
+  @else if $point == lg
+    $width: $lg
+  @else if $point == md
+    $width: $md
+  @else if $point == sm
+    $width: $sm
+
+  @if $height
+    @media (min-width: $width) or (min-height: $height)
+      @content
+  @else
+    @media (min-width: $width)
+      @content
+
+=maxor($point, $height: null)
+
+  $width: $point
+  @if $point == xs
+    $width: $sm - 1
+  @else if $point == sm
+    $width: $md - 1
+  @else if $point == md
+    $width: $lg - 1
+  @else if $point == lg
+    $width: $xl - 1
+
+  @if $height
+    @media (max-width: $width) or (max-height: $height)
+      @content
+  @else
+    @media (max-width: $width)
+      @content
+
+
 =minHeight($height)
   @media (min-height: $height)
     @content
@@ -220,3 +258,8 @@ $sm: 576px
 =ie
     @media all and (-ms-high-contrast: none)
         @content
+
+=repeat-delay($selector, $list, $type: animation)
+  @each $i, $a in $list
+    &#{$selector}#{$i}
+      #{$type}-delay: $a+s
