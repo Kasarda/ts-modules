@@ -2,8 +2,8 @@
  *
  * @module {animation}
  *
- * Includes animejs refference
- * and timing functions
+ * Includes timing functions
+ *
  */
 define(["require", "exports"], function (require, exports) {
   "use strict";
