@@ -20,9 +20,8 @@ const doc = require('./doc')
 program.version(version).usage('<keywords>').parse(process.argv)
 
 const manager = choose('yarn', 'npm')
-const starter_kit_repo = 'https://github.com/kasarda/modular.git'
 
-const use_manager = support('yarn') && program.rawArgs[program.rawArgs.length-1] === '-yarn' ? 'yarn' : 'npm'
+const use_manager = support('yarn') && program.rawArgs[program.rawArgs.length-1] !== '-npm' ? 'yarn' : 'npm'
 
 
 if (!support('node'))
@@ -40,18 +39,6 @@ else
 
         /**
          *
-         * Create new modular project from modular repo and install dependencies
-         *
-         */
-        case 'new':
-            Init(program.args[1] || 'modular', starter_kit_repo, program.rawArgs)
-            break
-
-
-
-
-        /**
-         *
          * Pull project from github to specific folder and install dependencies
          *
          */
@@ -63,7 +50,7 @@ else
             if (!repo_arg.includes('https://') && !repo_arg.includes('git@'))
                 repo = `https://github.com/${repo_arg}.git`
 
-            Init(program.args[2], repo, program.rawArgs)
+            Init(program.args[2], repo, program.rawArgs).catch(err => console.log(reset.red(`Cant initialize project correctly\n`), err))
             break
 
 
@@ -89,35 +76,12 @@ else
          */
         case 'serve':
         case 'build':
+        case 'start':
         case 'test':
             console.log(reset.cyan.underline(`\t${program.args[0].replace(/./, m => m.toUpperCase())} Application via ${use_manager}`))
             executeCommand(`${use_manager} run ${program.args[0]}`)
             break
 
-
-
-
-        /**
-         *
-         * Generating React component
-         *
-         */
-        case 'component':
-            require('./component')(program.args)
-            break
-
-
-
-        /**
-         *
-         * Updating CLI
-         *
-         */
-        case 'update':
-            console.log(reset.cyan.underline(`\tUpdating ts-modules via ${use_manager}`))
-            let install_global = use_manager === 'yarn' ? 'yarn global add' : 'npm i -g'
-            executeCommand(`${install_global} ts-modules`)
-            break
 
 
         /**

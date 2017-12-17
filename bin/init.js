@@ -37,6 +37,13 @@ module.exports = async (appName, repo, rawArgs) => {
     console.log(reset.cyan.underline('\t Application is creating'))
     await executeCommand(appName ? `git clone ${repo} ${appName}` : `git clone ${repo}`)
 
+    let name
+    try {
+      name = appName ? appname : repo.replace('https://github.com/', '').replace('git@github.com:', '').match(/\/.{1,}\.git$/)[0].replace('.git', '').replace(/^\//, '')
+    }
+    catch(err) {
+      console.log(reset.red(`Something is wrong in name of the project\n`), err)
+    }
 
 
     /**
@@ -44,7 +51,7 @@ module.exports = async (appName, repo, rawArgs) => {
      * Get list of new files
      *
      */
-    const app_dir = join(process.cwd(), appName)
+    const app_dir = join(process.cwd(), name)
     const list = getFilesList(app_dir, ['node_modules', '\.git'])
     list.forEach(file => console.log(reset.green(`\t+ ${file.replace(app_dir, '')}`)))
 
@@ -54,15 +61,15 @@ module.exports = async (appName, repo, rawArgs) => {
      *
      */
     console.log(reset.cyan.underline('\n\t Installing packages ...'))
-    shell.cd(appName)
+    shell.cd(name)
     await executeCommand(`${manager} install`)
 
     console.log(doc)
-    console.log(`${reset.cyan(`\tcd into ${reset.cyan.underline(appName)}`)}`)
+    console.log(`${reset.cyan(`\tcd into ${reset.cyan.underline(name)}`)}`)
   }
   catch (err) {
     console.log(reset.red(`Something is wrong\n`), err)
   }
 
-  return appName
+  return 0
 }
