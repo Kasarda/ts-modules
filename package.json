@@ -6,18 +6,9 @@
     "email": "fkasarda@gmail.com"
   },
   "license": "GPL-3.0",
-  "description": "Typescript, Sass modules and CLI for Modular starter-kit",
+  "description": "",
   "keywords": [
-    "react",
-    "modular",
-    "animejs",
-    "webpack",
-    "ts-modules",
-    "sass",
-    "cli",
-    "parallax",
-    "animation",
-    "grid"
+
   ],
   "repository": {
     "type": "git",
