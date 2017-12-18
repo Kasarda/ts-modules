@@ -17,10 +17,14 @@ const { choose, executeCommand, getFilesList, support } = require('./cli')
 const doc = require('./doc')
 
 module.exports = async (appName, repo, rawArgs) => {
-  const manager = rawArgs[rawArgs.length - 1] === '-yarn' ? 'yarn' : 'npm'
+  const manager = rawArgs[rawArgs.length - 1] === '-npm' ? 'npm' : 'yarn'
 
   if (!support('git')) {
     console.log(reset.red(`\tModular require ${reset.red.underline('Git')}\nyou can install git from https://git-scm.com/`))
+    return
+  }
+  else if (manager === 'npm' && !support('npm')) {
+    console.log(reset.red(`\PNpm is not installed in your machine`))
     return
   }
   else if(manager === 'yarn' && !support('yarn')) {
@@ -39,7 +43,7 @@ module.exports = async (appName, repo, rawArgs) => {
 
     let name
     try {
-      name = appName ? appname : repo.replace('https://github.com/', '').replace('git@github.com:', '').match(/\/.{1,}\.git$/)[0].replace('.git', '').replace(/^\//, '')
+      name = appName ? appName : repo.replace('https://github.com/', '').replace('git@github.com:', '').match(/\/.{1,}\.git$/)[0].replace('.git', '').replace(/^\//, '')
     }
     catch(err) {
       console.log(reset.red(`Something is wrong in name of the project\n`), err)

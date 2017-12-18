@@ -17,15 +17,15 @@ module.exports = reset(`--------------------------------------------------------
 ${cyan(`\tWelcome to Modular CLI \n\tversion ${version}`)}
 ----------------------------------------------------------
 
-\t- ${cyan('$ modular pull <repo> [<name>] [-yarn]')} ${gray(' -> Clone application from <repo> and install all packages into <name> folder')}
+\t- ${cyan('$ modular pull <repo> [<name>] [-npm]')} ${gray(' -> Clone application from <repo> and install all packages into <name> folder')}
 \t\t- ${cyan(`<repo> ${gray('-> SSH, HTTPS or username/project')}`)}
 \t\t\t- ${cyan(`example: $ modular pull kasarda/modular newApplication`)}
 \t\t\t- ${cyan(`example: $ modular pull https://github.com/kasarda/modular.git newApplication`)}
 \t\t\t- ${cyan(`example: $ modular pull git@github.com:kasarda/modular.git newApplication`)}
-\t- ${cyan('$ modular serve [-yarn]')} ${gray(' -> Serving application')}
-\t- ${cyan('$ modular build [-yarn]')} ${gray(' -> Create production')}
-\t- ${cyan('$ modular test [-yarn]')} ${gray(' -> Run mocha testing')}
-\t- ${cyan('$ modular install [-yarn]')} ${gray(' -> Install packages')}
+\t- ${cyan('$ modular serve [-npm]')} ${gray(' -> Serving application')}
+\t- ${cyan('$ modular build [-npm]')} ${gray(' -> Create production')}
+\t- ${cyan('$ modular test [-npm]')} ${gray(' -> Run mocha testing')}
+\t- ${cyan('$ modular install [-npm]')} ${gray(' -> Install packages')}
 \t- ${cyan('$ modular -V')} ${gray(' -> Get version of CLI')}
 \t- ${cyan('$ modular <other_options>')} ${gray(' -> Show documentation')}
 \t ${gray(`Created by ${author.name}`)}
