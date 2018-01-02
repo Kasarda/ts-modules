@@ -1,6 +1,6 @@
 {
   "name": "ts-modules",
-  "version": "4.1.0-next",
+  "version": "4.2.0",
   "author": {
     "name": "Filip Kasarda",
     "email": "fkasarda@gmail.com"
@@ -28,5 +28,8 @@
     "cross-spawn": "^5.1.0",
     "shelljs": "^0.7.8",
     "express": "^4.16.2"
-  }
+  },
+  "todo": [
+    "webpack test with babel and sass"
+  ]
 }
