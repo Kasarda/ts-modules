@@ -18,13 +18,15 @@
     "ml": "bin/main.js"
   },
   "scripts": {
-    "build-source": "node bin/main.js"
+    "build-source": "node bin/main.js",
+    "serve": "node ./test/server.js"
   },
   "dependencies": {
     "chalk": "^2.3.0",
     "command-exists": "^1.2.2",
     "commander": "^2.12.2",
     "cross-spawn": "^5.1.0",
-    "shelljs": "^0.7.8"
+    "shelljs": "^0.7.8",
+    "express": "^4.16.2"
   }
 }
