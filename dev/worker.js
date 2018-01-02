@@ -1,0 +1,57 @@
+/**! @license
+  * worker.ts
+  *
+  * This source code is licensed under the GNU GENERAL PUBLIC LICENSE found in the
+  * LICENSE file in the root directory of this source tree.
+  *
+  * Copyright (c) 2017-Present, Filip Kasarda
+  *
+  */
+
+/**
+ *
+ * @module worker
+ *
+ * Includes easy functionality for comunication between browser and web worker
+ * Work just fine in browser and web worker js interface
+ *
+ */
+
+export class WebWorker {
+    constructor(worker = self) {
+        this.worker = worker === self ? worker : new worker
+        this.terminated = false
+        this.sended = []
+        this.readed = []
+    }
+
+    send(name, data) {
+        this.worker.postMessage({ name, data })
+        this.sended.push(name)
+        return this
+    }
+
+    read(name, callback) {
+        const scope = this
+        this.worker.addEventListener('message', function (this, event) {
+            if (name === event.data.name) {
+                callback.call(this, event.data.data, event)
+                scope.readed.push(name)
+            }
+        })
+        return this
+    }
+
+    failed(listener) {
+        this.worker.addEventListener('error', listener)
+        return this
+    }
+
+    terminate() {
+        if (this.worker.terminate) {
+            this.worker.terminate()
+            this.terminated = true
+        }
+        return this
+    }
+}
