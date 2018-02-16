@@ -262,6 +262,11 @@ $sm: 576px
 =edge
     @supports (-ms-ime-align: auto)
       @content
+=ms
+  +ie
+      @content
+  +edge
+      @content
 
 =repeat-delay($selector, $list, $type: animation)
   @each $i, $a in $list
