@@ -259,6 +259,10 @@ $sm: 576px
     @media all and (-ms-high-contrast: none)
         @content
 
+=edge
+    @supports (-ms-ime-align: auto)
+      @content
+
 =repeat-delay($selector, $list, $type: animation)
   @each $i, $a in $list
     &#{$selector}#{$i}
