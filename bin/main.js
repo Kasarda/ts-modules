@@ -15,7 +15,9 @@ const { reset } = require('chalk')
 const { choose, executeCommand, support } = require('./cli')
 const { version } = require('../package.json')
 const Init = require('./init')
+const { customCommand, removeCustomCommand, executeCustomCommand } = require('./custom')
 const doc = require('./doc')
+const config = require('./config.json')
 
 program.version(version).usage('<keywords>').parse(process.argv)
 
@@ -32,6 +34,21 @@ if (!support('node'))
 else if (!manager)
     console.log(reset.red('\tModular require NPM or Yarn'))
 
+
+else if (program.args[0] && program.args[0].includes('$')) {
+    const name = program.args[0].replace(/^\$/, '')
+    const value = program.args[1]
+
+    if (!value)
+        executeCustomCommand(name)
+
+    else if (value === '-')
+        removeCustomCommand(name)
+
+    else if (value)
+        customCommand(name, value)
+
+}
 
 else
     switch (program.args[0]) {
@@ -82,6 +99,15 @@ else
             executeCommand(`${use_manager} run ${program.args[0]}`)
             break
 
+        /**
+         *
+         * Get config object
+         *
+         */
+
+        case 'config':
+            console.log(reset.cyan(JSON.stringify(config, null, 2)))
+            break
 
 
         /**
