@@ -1,6 +1,6 @@
 {
-  "name": "ts-modules",
-  "version": "5.0.0",
+  "name": "kasarda",
+  "version": "1.0.2",
   "author": {
     "name": "Filip Kasarda",
     "email": "fkasarda@gmail.com"
@@ -10,11 +10,10 @@
   "keywords": [],
   "repository": {
     "type": "git",
-    "url": "https://github.com/kasarda/ts-modules.git"
+    "url": "https://github.com/kasarda/kasarda.git"
   },
   "main": "",
   "bin": {
-    "modular": "bin/main.js",
     "ml": "bin/main.js"
   },
   "scripts": {
