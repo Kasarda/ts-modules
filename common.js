@@ -94,7 +94,7 @@ export function rand(from, to = 0, round = true) {
   *
 */
 
-export function getProgress(from, to, value, outside) {
+export function getProgress(from, to, value, outside = false) {
     const max = to - from
     const user_value = value - from
     const progress = user_value / max
@@ -183,7 +183,7 @@ export function setStyles(elem, styles, value) {
 export function createRequestFrame(duration, callback, done) {
     let starttime
     let requestID
-    function animation(this, timestamp) {
+    function animation(timestamp) {
         const runtime = timestamp - starttime
         const progress = Math.min(runtime / duration, 1)
 
