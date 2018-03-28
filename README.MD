@@ -1,7 +1,7 @@
 # Utilities for JavaScript, CSS and SASS
 
 <ul>
-    <li><a href="#install">Install</a></li>
+    <li><a href="#install-package">Install</a></li>
     <li><a href="#javascript">JavaScript</a></li>
     <ul>
         <li><a href="#common">Common</a></li>
@@ -13,7 +13,8 @@
     <li><a href="#sass">SASS</a></li>
 </ul>
 
-<h1 id="install">Install</h1>
+<h1 id="install-package">Install</h1>
+
 <h3>NPM</h3>
 <code>
    $ npm i kasarda
@@ -30,12 +31,12 @@
 ```javascript
 import {
     unique,
-    isPlain
-    rand
-    getProgress
-    getValue
-    item
-    setStyles
+    isPlain,
+    rand,
+    getProgress,
+    getValue,
+    item,
+    setStyles,
     createRequestFrame
 } from 'kasarda/common'
 

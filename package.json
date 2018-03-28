@@ -1,13 +1,25 @@
 {
   "name": "kasarda",
-  "version": "1.0.2-next",
+  "version": "1.1.1",
   "author": {
     "name": "Filip Kasarda",
     "email": "fkasarda@gmail.com"
   },
   "license": "GPL-3.0",
-  "description": "",
-  "keywords": [],
+  "description": "Utilities for JavaScript, CSS and SASS",
+  "keywords": [
+    "easing",
+    "view",
+    "animation",
+    "library",
+    "sass",
+    "css",
+    "javascript",
+    "flexbox",
+    "visibility",
+    "utilities",
+    "common"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/kasarda/kasarda.git"
