@@ -29,8 +29,7 @@
     "ml": "bin/main.js"
   },
   "scripts": {
-    "build-source": "node bin/main.js",
-    "serve": "node ./test/server.js"
+    "build-source": "node bin/main.js"
   },
   "dependencies": {
     "chalk": "^2.3.1",
