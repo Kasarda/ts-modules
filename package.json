@@ -1,6 +1,6 @@
 {
   "name": "kasarda",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "author": {
     "name": "Filip Kasarda",
     "email": "fkasarda@gmail.com"
@@ -24,18 +24,7 @@
     "type": "git",
     "url": "https://github.com/kasarda/kasarda.git"
   },
-  "main": "",
-  "bin": {
-    "ml": "bin/main.js"
-  },
   "scripts": {
     "build-source": "node bin/main.js"
-  },
-  "dependencies": {
-    "chalk": "^2.3.1",
-    "command-exists": "^1.2.2",
-    "commander": "^2.14.1",
-    "cross-spawn": "^6.0.4",
-    "shelljs": "^0.8.1"
   }
 }
