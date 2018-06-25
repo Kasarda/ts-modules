@@ -23,14 +23,14 @@ $sm: 576px
 
 
 
-=center($position: both)
-  position: absolute
+=center($axis: both, $position: absolute)
+  position: $position
 
-  @if $position == y
+  @if $axis == y
     top: 50%
     transform: translateY(-50%)
 
-  @else if $position == x
+  @else if $axis == x
     left: 50%
     transform: translate(-50%)
 
