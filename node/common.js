@@ -48,6 +48,32 @@ function isPlain(obj) {
 
 /**
   *
+  * @function isEqualObject
+  * Return true if both objects has same keys with same values
+  *
+*/
+
+function isEqualObject(left, right) {
+    const leftProps = Object.getOwnPropertyNames(left)
+    const rightProps = Object.getOwnPropertyNames(right)
+
+    if (leftProps.length != rightProps.length)
+        return false
+
+    for (const prop of leftProps) {
+        if (left[prop] !== right[prop])
+            return false
+    }
+
+    return true
+}
+
+
+
+
+
+/**
+  *
   * @function rand
   * It is for getting random value
   * {Range}                    -> rand(0, 100)
@@ -211,6 +237,7 @@ function createRequestFrame(duration, callback, done) {
 module.exports = {
     unique,
     isPlain,
+    isEqualObject,
     rand,
     getProgress,
     getValue,
