@@ -53,7 +53,10 @@ function isPlain(obj) {
   *
 */
 
-function isEqualObject(left, right) {
+function isEqualObject(a, b) {
+    const left = JSON.parse(JSON.stringify(a))
+    const right = JSON.parse(JSON.stringify(b))
+
     const leftProps = Object.getOwnPropertyNames(left)
     const rightProps = Object.getOwnPropertyNames(right)
 
@@ -61,7 +64,19 @@ function isEqualObject(left, right) {
         return false
 
     for (const prop of leftProps) {
-        if (left[prop] !== right[prop])
+        const first = left[prop]
+        const second = right[prop]
+
+        if (
+            typeof first === 'object' &&
+            typeof second === 'object' &&
+            first !== null &&
+            second !== null
+        ) {
+            return isEqualObject(first, second)
+        }
+
+        if (first !== second)
             return false
     }
 
@@ -243,5 +258,5 @@ module.exports = {
     getValue,
     item,
     setStyles,
-    createRequestFrame,
+    createRequestFrame
 }
