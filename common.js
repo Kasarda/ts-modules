@@ -121,7 +121,6 @@ export function rand(from, to = 0, round = true) {
     }
 
     return random
-
 }
 
 

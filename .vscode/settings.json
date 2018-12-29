@@ -1,0 +1,9 @@
+{
+    "files.exclude": {
+        ".gitignore": true,
+        ".vscode": true,
+        "LICENSE": true,
+        "README.MD": true,
+        "yarn.lock": true
+    }
+}
