@@ -10,7 +10,7 @@
 
 export default class WebWorker {
     constructor(worker = self) {
-        this.worker = worker === self ? worker : new worker()
+        this.worker = worker === self ? worker : new worker(worker)
         this.terminated = false
         this.sended = []
         this.readed = []
