@@ -10,7 +10,7 @@
 
 class WebWorker {
     constructor(worker = self) {
-        this.worker = worker === self ? worker : new worker(worker)
+        this.worker = worker === self ? worker : new Worker(worker)
         this.terminated = false
         this.sended = []
         this.readed = []
