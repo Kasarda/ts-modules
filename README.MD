@@ -167,8 +167,7 @@ inView({
 ```javascript
 import WebWorker from 'kasarda/worker'
 
-const greetingWorker = new Worker('greeting_worker.js')
-const worker = new WebWorker(greetingWorker)
+const worker = new WebWorker('greeting_worker.js')
 
 worker.send('greeting', 'hello')
 
