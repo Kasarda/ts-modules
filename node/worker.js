@@ -47,4 +47,4 @@ class WebWorker {
     }
 }
 
-module.exports = Worker
+module.exports = WebWorker
