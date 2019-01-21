@@ -150,8 +150,8 @@ class Interaction {
         this._target.addEventListener('mousedown', event => this._start(event), { passive })
         this._target.addEventListener('touchstart', event => this._start(event), { passive })
 
-        window.addEventListener('mouseup', event => this._end(event), { passive })
-        window.addEventListener('touchend', event => this._end(event), { passive })
+        this._target.addEventListener('mouseup', event => this._end(event), { passive })
+        this._target.addEventListener('touchend', event => this._end(event), { passive })
 
         this._target.addEventListener('click', event => this._click(event), { passive })
 
