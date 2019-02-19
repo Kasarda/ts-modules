@@ -40,25 +40,7 @@ slide.targets  -> Array[HTMLElement]
 slide.start  -> number
 */
 
-const options = {
-    targets: '.item', // Elements. Allowed are selector, HTMLElement, NodeList or array of elements or selectors
-    start: 2, // Default position of the slide. Default is 1. Range is from 1 to length of the targets
-    interval: 1000, // duration of the interval in ms. If nothing is set interval will be disabled. 
-    activeClass: 'active', // active class name will be added to the active element. Default is 'active'
-    slide(pos) { // run when slide is changed
-
-    },
-    next(pos) { // run when we use the next method
-
-    },
-    prev(pos) { // run when we use the prev method
-
-    }
-}
-
-
-
-export default class SlideShow {
+class SlideShow {
     constructor({
         targets,
         start = 1,
@@ -240,3 +222,5 @@ export default class SlideShow {
         return false
     }
 }
+
+module.exports = SlideShow

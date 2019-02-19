@@ -7,7 +7,7 @@
   *
   */
  
-export default class Pinner {
+class Pinner {
     constructor({
         container,
         target,
@@ -128,3 +128,4 @@ export default class Pinner {
 
 
 
+module.exports = Pinner

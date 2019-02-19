@@ -8,7 +8,7 @@
   */
 
 
-export default (configuration = {}) => {
+function View(configuration = {}) {
     let { visibility, axis, direction, target, offset } = configuration
 
 
@@ -17,6 +17,9 @@ export default (configuration = {}) => {
         console.error('[in-view] -> target property must be an element')
         return
     }
+
+    if (target.offsetParent === null)
+        return false
 
 
     // Default values
@@ -126,3 +129,5 @@ function getResult(type, results) {
             return top && left
     }
 }
+
+module.exports = View

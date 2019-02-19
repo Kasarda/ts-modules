@@ -8,7 +8,7 @@
   */
 
 
-export default class WebWorker {
+class WebWorker {
     constructor(worker = self) {
         this.worker = worker === self ? worker : new Worker(worker)
         this.terminated = false
@@ -16,7 +16,7 @@ export default class WebWorker {
         this.readed = []
     }
 
-    send(name, data) {
+    send(name, ...data) {
         this.worker.postMessage({ name, data })
         this.sended.push(name)
         return this
@@ -26,7 +26,8 @@ export default class WebWorker {
         const scope = this
         this.worker.addEventListener('message', function (event) {
             if (name === event.data.name) {
-                callback.call(this, event.data.data, event)
+                this.event = event
+                callback.call(this, ...event.data.data)
                 scope.readed.push(name)
             }
         })
@@ -46,3 +47,5 @@ export default class WebWorker {
         return this
     }
 }
+
+module.exports = WebWorker

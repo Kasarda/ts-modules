@@ -110,7 +110,7 @@ API:
 */
 
 
-export default class Interaction {
+class Interaction {
     constructor({
         target = window,
         button = 0,
@@ -492,3 +492,5 @@ export default class Interaction {
             cb.call(this, ...data)
     }
 }
+
+module.exports = Interaction

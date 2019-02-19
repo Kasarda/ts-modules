@@ -1,6 +1,6 @@
 {
   "name": "kasarda",
-  "version": "1.6.5",
+  "version": "2.0.0",
   "author": {
     "name": "Filip Kasarda",
     "email": "fkasarda@gmail.com"
@@ -21,7 +21,12 @@
     "common",
     "slideshow",
     "interaction",
-    "pinner"
+    "pinner",
+    "scroll",
+    "createElement",
+    "kasarda",
+    "history",
+    "chunk"
   ],
   "repository": {
     "type": "git",

@@ -60,7 +60,7 @@ function newtonRaphsonIterate(aX, aGuessT, mX1, mX2) {
 
 
 
-export function bezier(mX1, mY1, mX2, mY2) {
+function bezier(mX1, mY1, mX2, mY2) {
     if (!(0 <= mX1 && mX1 <= 1 && 0 <= mX2 && mX2 <= 1))
         error('bezier x values must be in [0, 1] range')
 
@@ -118,7 +118,7 @@ export function bezier(mX1, mY1, mX2, mY2) {
   * steps( steps ) (progress)
   *
 */
-export function steps(steps) {
+function steps(steps) {
     return progress => Math.round(progress * steps) * (1 / steps)
 }
 
@@ -132,7 +132,7 @@ export function steps(steps) {
   * spring(tension friction  duration ) (progress)
   *
 */
-export const spring = (function () {
+const spring = (function () {
     const springAccelerationForState = (state) => (-state.tension * state.x) - (state.friction * state.v)
 
     function springEvaluateStateWithDerivative(initialState, dt, derivative) {
@@ -209,7 +209,7 @@ export const spring = (function () {
 
 
 
-export let easings = {
+let easings = {
     ease: bezier(0.25, 0.1, 0.25, 1.0),
     easeIn: bezier(0.42, 0.0, 1.00, 1.0),
     easeOut: bezier(0.00, 0.0, 0.58, 1.0),
@@ -235,4 +235,11 @@ export let easings = {
     easeInCirc: bezier(0.6, 0.04, 0.98, 0.335),
     easeOutCirc: bezier(0.075, 0.82, 0.165, 1),
     easeInOutCirc: bezier(0.785, 0.135, 0.15, 0.86)
+}
+
+module.exports = {
+    bezier,
+    steps,
+    spring,
+    easings
 }
