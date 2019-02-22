@@ -420,7 +420,7 @@ const history = new History
 history.push('a')
 history.push('b')
 history.push('c')
-history.states = ['a', 'b', 'c']
+history.states // -> ['a', 'b', 'c']
 
 history.currentState // -> 'c'
 history.back()
