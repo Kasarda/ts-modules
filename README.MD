@@ -430,7 +430,7 @@ history.currentState // -> 'a'
 history.forward()
 history.currentState // -> 'b'
 history.push('d')
-history.states = ['a', 'b', 'd']
+history.states // -> ['a', 'b', 'd']
 history.currentState // -> 'd'
 history.isLast // -> true
 history.back()
