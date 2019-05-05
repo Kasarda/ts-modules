@@ -379,7 +379,10 @@ class Interaction {
             getDistanceBetweenElements: this.getDistanceBetweenElements,
             preventDefault: () => event.preventDefault(),
             stopPropagation: () => event.stopPropagation(),
-            stopImmediatePropagation: () => event.stopImmediatePropagation()
+            stopImmediatePropagation: () => event.stopImmediatePropagation(),
+            getDistance: this.getDistance,
+            getElementCoords: (element = target, center = false) => this.getElementCoords(element, center)
+
         }
     }
 
@@ -482,6 +485,23 @@ class Interaction {
             Math.abs(firstRect.top - secondRect.top)
         ]
     }
+    getDistance(a, b) {
+        return [
+            b[0] - a[0],
+            b[1] - a[1]
+        ]
+    }
+
+    getElementCoords(element, center = false) {
+        const rect = element.getBoundingClientRect()
+        const x = center ? rect.width / 2 : 0
+        const y = center ? rect.height / 2 : 0
+
+        return [
+            rect.left + window.scrollX + x,
+            rect.top + window.scrollY + y
+        ]
+    }
 
     minmax(min, max, value) {
         return Math.max(Math.min(value, max), min)
@@ -492,5 +512,6 @@ class Interaction {
             cb.call(this, ...data)
     }
 }
+
 
 module.exports = Interaction
