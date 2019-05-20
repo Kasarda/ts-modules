@@ -381,7 +381,10 @@ class Interaction {
             stopPropagation: () => event.stopPropagation(),
             stopImmediatePropagation: () => event.stopImmediatePropagation(),
             getDistance: this.getDistance,
-            getElementCoords: (element = target, center = false) => this.getElementCoords(element, center)
+            getElementCoords: (element = target, center = false) => this.getElementCoords(element, center),
+            get coords() {
+                return [clientX, clientY]
+            }
 
         }
     }
