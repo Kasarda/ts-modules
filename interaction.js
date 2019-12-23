@@ -343,7 +343,7 @@ class Interaction {
             x1, x2, y1, y2,
             time,
             target: this._startEvent.target,
-            path: this._startEvent,
+            path: this._startEvent.path,
             isTouch: this._startEvent.isTouch,
             isMouse: this._startEvent.isMouse
         }, this._specialPrototype(event))
@@ -375,7 +375,7 @@ class Interaction {
             x1, x2, y1, y2,
             time,
             target: this._startEvent.target,
-            path: this._startEvent,
+            path: this._startEvent.path,
             isTouch: this._startEvent.isTouch,
             isMouse: this._startEvent.isMouse
         }, this._specialPrototype(event, distanceX, distanceY, this._startEvent.target))
