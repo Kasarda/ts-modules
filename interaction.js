@@ -239,14 +239,14 @@ class Interaction {
         if (event.path)
             return event.path
 
-        const target = event.target
-        this.path = []
+        let target = event.target
+        const path = []
         while (target.parentNode !== null) {
-            this.path.push(target)
+            path.push(target)
             target = target.parentNode
         }
-        this.path.push(document, window)
-        return this.path
+        path.push(document, window)
+        return path
     }
 
     _mouseHandler(event) {
