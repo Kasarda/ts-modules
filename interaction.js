@@ -235,6 +235,20 @@ class Interaction {
         this._trigger(this._event.click, clickEvent)
     }
 
+    _composePath(event) {
+        if (event.path)
+            return event.path
+
+        const target = event.target
+        this.path = []
+        while (target.parentNode !== null) {
+            this.path.push(target)
+            target = target.parentNode
+        }
+        this.path.push(document, window)
+        return this.path
+    }
+
     _mouseHandler(event) {
         const {
             screenX, screenY,
@@ -242,9 +256,10 @@ class Interaction {
             offsetX, offsetY,
             pageX, pageY,
             type, detail, timeStamp,
-            ctrlKey, shiftKey, altKey, metaKey, target,
-            path
+            ctrlKey, shiftKey, altKey, metaKey, target
         } = event
+
+        const path = this._composePath(event)
 
         return Object.setPrototypeOf({
             original: event,
@@ -264,9 +279,10 @@ class Interaction {
     _touchHandler(event) {
         const {
             type, target, timeStamp,
-            ctrlKey, shiftKey, altKey, metaKey,
-            path, detail
+            ctrlKey, shiftKey, altKey, metaKey, detail
         } = event
+
+        const path = this._composePath(event)
 
         const touches = []
         for (const touch of event.changedTouches) {
@@ -327,7 +343,7 @@ class Interaction {
             x1, x2, y1, y2,
             time,
             target: this._startEvent.target,
-            path: this._startEvent.path,
+            path: this._startEvent,
             isTouch: this._startEvent.isTouch,
             isMouse: this._startEvent.isMouse
         }, this._specialPrototype(event))
@@ -359,7 +375,7 @@ class Interaction {
             x1, x2, y1, y2,
             time,
             target: this._startEvent.target,
-            path: this._startEvent.path,
+            path: this._startEvent,
             isTouch: this._startEvent.isTouch,
             isMouse: this._startEvent.isMouse
         }, this._specialPrototype(event, distanceX, distanceY, this._startEvent.target))
@@ -385,7 +401,6 @@ class Interaction {
             get coords() {
                 return [clientX, clientY]
             }
-
         }
     }
 
