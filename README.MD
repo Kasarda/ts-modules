@@ -140,6 +140,15 @@ requstID => {
 minmax(0, 10, 5) // -> 5
 minmax(0, 10, -5) // -> 0
 minmax(0, 10, 15) // -> 10
+
+
+/**
+ * move(array:any[], from:number, to:number)
+ * -> Move item in array from one position to another
+ */
+
+move([1, 2, 3], 0, 2) // -> [2, 3, 1]
+
 ```
 
 <h2 id="view">View</h2>

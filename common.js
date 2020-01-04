@@ -13,6 +13,8 @@ const item = require('./common/item')
 const setStyles = require('./common/setStyles')
 const animationLoop = require('./common/animationLoop')
 const minmax = require('./common/minmax')
+const move = require('./common/move')
+
 
 module.exports = {
   rand,
@@ -21,5 +23,6 @@ module.exports = {
   item,
   setStyles,
   animationLoop,
-  minmax
+  minmax,
+  move
 }

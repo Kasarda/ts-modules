@@ -1,6 +1,6 @@
 {
   "name": "kasarda",
-  "version": "2.1.4",
+  "version": "2.2.0",
   "author": {
     "name": "Filip Kasarda",
     "email": "fkasarda@gmail.com"
@@ -27,7 +27,11 @@
     "kasarda",
     "history",
     "chunk",
-    "conversion"
+    "conversion",
+    "event emitter",
+    "form builder",
+    "builder",
+    "move"
   ],
   "repository": {
     "type": "git",

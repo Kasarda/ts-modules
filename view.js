@@ -13,10 +13,8 @@ function View(configuration = {}) {
 
 
     // Error Handling
-    if (!target) {
-        console.error('[in-view] -> target property must be an element')
-        return
-    }
+    if (!target)
+        throw new TypeError('[in-view] -> target property must be an element')
 
     if (target.offsetParent === null)
         return false
@@ -40,25 +38,17 @@ function View(configuration = {}) {
 
 
     // Error Handling
-    if (!/^(visible|entire)$/.test(visibility)) {
-        console.error(`[in-view] -> visibility take only value: 'visible' or 'entire'`)
-        return
-    }
+    if (!/^(visible|entire)$/.test(visibility))
+        throw new TypeError(`[in-view] -> visibility take only value: 'visible' or 'entire'`)
 
-    if (!/^(x|y|both)$/.test(axis)) {
-        console.error(`[in-view] -> axis take only value: 'x', 'y' or 'both'`)
-        return
-    }
+    if (!/^(x|y|both)$/.test(axis))
+        throw new TypeError(`[in-view] -> axis take only value: 'x', 'y' or 'both'`)
 
-    if (!/^(linear|end|start)$/.test(direction)) {
-        console.error(`[in-view] -> direction take only value: 'linear', 'end' or 'start'`)
-        return
-    }
+    if (!/^(linear|end|start)$/.test(direction))
+        throw new TypeError(`[in-view] -> direction take only value: 'linear', 'end' or 'start'`)
 
-    if (offset.toString() !== '[object Object]') {
-        console.error(`[in-view] -> offset must be a plain object and can include properties: top, left, bottom, right with number values`)
-        return
-    }
+    if (offset.toString() !== '[object Object]')
+        throw new TypeError(`[in-view] -> offset must be a plain object and can include properties: top, left, bottom, right with number values`)
 
 
 

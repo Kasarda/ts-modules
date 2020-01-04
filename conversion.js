@@ -1,28 +1,13 @@
+/**! @license
+  *
+  * This source code is licensed under the GNU GENERAL PUBLIC LICENSE found in the
+  * LICENSE file in the root directory of this source tree.
+  *
+  * Copyright (c) 2017-Present, Filip Kasarda
+  *
+  */
+
 const Unit = (_ => {
-
-    function isValidObject(model, obj) {
-        let isValid = true
-        if (typeof obj === 'object') {
-            for (const prop in model) {
-                let objType = typeof obj[prop]
-
-                if (Number.isNaN(obj[prop]))
-                    objType = 'nan'
-
-
-                if (model[prop] !== objType)
-                    isValid = false
-            }
-        }
-        else
-            return false
-
-        return isValid
-    }
-
-
-
-
     class UnitValue {
         constructor(value, unit) {
             this.value = value
@@ -42,18 +27,6 @@ const Unit = (_ => {
 
     class UnitType {
         constructor(type) {
-            // const model = {
-            //     symbol: 'string',
-            //     name: 'string',
-            //     type: 'string',
-            //     system: 'string',
-            //     root: 'number'
-            // }
-            // const isValid = isValidObject(model, type)
-
-            // if (!isValid)
-            //     throw new Error(`Invalid unit object.\n Expected ${JSON.stringify(model)}`)
-
             this.symbol = type.symbol
             this.name = type.name
             this.type = type.type
@@ -219,7 +192,7 @@ const Unit = (_ => {
             pnt: createUnit({ symbol: 'pnt', name: 'liquid pint (US)', type: 'volume', system: 'imperial', root: 473.176473 }),
             cup: createUnit({ symbol: 'cup', name: 'cup', type: 'volume', system: 'metric', root: 250 }),
             floz: createUnit({ symbol: 'floz', name: 'fluid ounce (US)', type: 'volume', system: 'imperial', root: 29.5735 }),
-            Tbs: createUnit({ symbol: 'Tbs', name: 'tablespoon', type: 'volume', system: 'metric', root: 15 }),            
+            Tbs: createUnit({ symbol: 'Tbs', name: 'tablespoon', type: 'volume', system: 'metric', root: 15 }),
             USTbs: createUnit({ symbol: 'Tbs(US)', name: 'tablespoon (US)', type: 'volume', system: 'imperial', root: 14.786765 }),
             UKTbs: createUnit({ symbol: 'Tbs(UK)', name: 'tablespoon (UK)', type: 'volume', system: 'imperial', root: 17.758164 }),
             tsp: createUnit({ symbol: 'tsp', name: 'teaspoon', type: 'volume', system: 'metric', root: 5 }),
@@ -335,7 +308,7 @@ const Unit = (_ => {
             J: createUnit({ symbol: 'J', name: 'joule', type: 'energy', system: 'metric', root: 1 }),
             kJ: createUnit({ symbol: 'kJ', name: 'kilojoule', type: 'energy', system: 'metric', root: 1000 }),
             MJ: createUnit({ symbol: 'MJ', name: 'megajoule', type: 'energy', system: 'metric', root: 1000000 }),
-            GJ: createUnit({ symbol: 'GJ', name: 'gigajoule', type: 'energy', system: 'metric', root: 1000000000 }),            
+            GJ: createUnit({ symbol: 'GJ', name: 'gigajoule', type: 'energy', system: 'metric', root: 1000000000 }),
             cal: createUnit({ symbol: 'cal', name: 'calorie', type: 'energy', system: 'metric', root: 4.186798 }),
             Wh: createUnit({ symbol: 'Wh', name: 'watt hour', type: 'energy', system: 'metric', root: 3600 }),
             MWh: createUnit({ symbol: 'MWh', name: 'megawatt hour', type: 'energy', system: 'metric', root: 3600000000 }),
@@ -427,24 +400,24 @@ const Unit = (_ => {
             TW: createUnit({ symbol: 'TW', name: 'terawatt', type: 'power', system: 'metric', root: 1000000000000 }),
             BASIC_UNIT: 'W'
         },
-        
+
         force: {
             N: createUnit({ symbol: 'N', name: 'newton', type: 'force', system: 'metric', root: 1 }),
-            daN: createUnit({ symbol: 'hN', name: 'dekanewton', type: 'force', system: 'metric', root: 10 }),         
-            hN: createUnit({ symbol: 'hN', name: 'hectonewton', type: 'force', system: 'metric', root: 100 }),         
+            daN: createUnit({ symbol: 'hN', name: 'dekanewton', type: 'force', system: 'metric', root: 10 }),
+            hN: createUnit({ symbol: 'hN', name: 'hectonewton', type: 'force', system: 'metric', root: 100 }),
             kN: createUnit({ symbol: 'kN', name: 'kilonewton', type: 'force', system: 'metric', root: 1000 }),
-            MN: createUnit({ symbol: 'MN', name: 'meganewton', type: 'force', system: 'metric', root: 1000000 }),            
-            GN: createUnit({ symbol: 'GN', name: 'giganewton', type: 'force', system: 'metric', root: 1000000000 }),         
-            TN: createUnit({ symbol: 'TN', name: 'teranewton', type: 'force', system: 'metric', root: 1000000000000 }),         
-            dyn: createUnit({ symbol: 'dyn', name: 'dyne', type: 'force', system: 'metric', root: 0.00001 }),         
-            p: createUnit({ symbol: 'p', name: 'pond', type: 'force', system: 'metric', root: 0.00980665 }),         
+            MN: createUnit({ symbol: 'MN', name: 'meganewton', type: 'force', system: 'metric', root: 1000000 }),
+            GN: createUnit({ symbol: 'GN', name: 'giganewton', type: 'force', system: 'metric', root: 1000000000 }),
+            TN: createUnit({ symbol: 'TN', name: 'teranewton', type: 'force', system: 'metric', root: 1000000000000 }),
+            dyn: createUnit({ symbol: 'dyn', name: 'dyne', type: 'force', system: 'metric', root: 0.00001 }),
+            p: createUnit({ symbol: 'p', name: 'pond', type: 'force', system: 'metric', root: 0.00980665 }),
             BASIC_UNIT: 'N'
         },
 
         sound: {
             B: createUnit({ symbol: 'B', name: 'bel', type: 'sound', system: 'metric', root: 1 }),
             dB: createUnit({ symbol: 'B', name: 'decibel', type: 'sound', system: 'metric', root: 0.1 }),
-            N: createUnit({ symbol: 'N', name: 'neper', type: 'sound', system: 'metric', root: 0.8686 }),            
+            N: createUnit({ symbol: 'N', name: 'neper', type: 'sound', system: 'metric', root: 0.8686 }),
             BASIC_UNIT: 'B'
         },
 
