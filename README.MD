@@ -39,7 +39,8 @@ import {
     item,
     setStyles,
     animationLoop,
-    minmax
+    minmax,
+    move
 } from 'kasarda/common'
 /* 
 import rand from 'kasarda/common/rand'
