@@ -305,16 +305,15 @@ class Interaction {
             })
         }
 
-        return Object.setPrototypeOf({
+        return Object.setPrototypeOf(Object.assign({
             original: event,
             type, target, timeStamp, detail, path,
             button: 0, buttons: 0,
             ctrlKey, shiftKey, altKey, metaKey,
             isTouch: true,
             isMouse: false,
-            ...touches[0],
             touches
-        }, this._prototype(event))
+        }, touches[0]), this._prototype(event))
     }
 
     _swapHandler(event) {
@@ -444,8 +443,8 @@ class Interaction {
         const targetRect = target.getBoundingClientRect()
         const parentRect = target.offsetParent.getBoundingClientRect()
 
-        const coordX = x - parentRect.left - (targetRect.width / 2)
-        const coordY = y - parentRect.top - (targetRect.height / 2)
+        const cordX = x - parentRect.left - (targetRect.width / 2)
+        const cordY = y - parentRect.top - (targetRect.height / 2)
 
         const minX = -parentRect.left + containerRect.left
         const minY = -parentRect.top + containerRect.top
@@ -454,8 +453,8 @@ class Interaction {
         const maxY = (containerRect.height - targetRect.height) + minY
 
         return [
-            this.minmax(minX, maxX, coordX),
-            this.minmax(minY, maxY, coordY)
+            this.minmax(minX, maxX, cordX),
+            this.minmax(minY, maxY, cordY)
         ]
     }
 
