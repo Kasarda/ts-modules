@@ -405,11 +405,10 @@ class Interaction {
     }
 
     _specialPrototype(event, distanceX, distanceY, target) {
-        return {
-            ...this._prototype(event, target),
+        return Object.assign({
             getRelativeTargetCoords: (container = target.offsetParent) => this.getRelativeTargetCoords(target, container, distanceX, distanceY),
             getTargetCoords: () => this.getTargetCoords(this._startTargetOffsetX, this._startTargetOffsetY, distanceX, distanceY)
-        }
+        }, this._prototype(event, target))
     }
 
 
