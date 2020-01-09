@@ -7,8 +7,26 @@
   *
   */
 
+/**
+ * @param {{
+ *  target: Element,
+ *  visibility: ('visible'|'entire'),
+ *  axis: ('x'|'y'|'both'),
+ *  direction: ('linear'|'start'|'end')
+ *  offset: {
+ *      top: number,
+ *      bottom: number,
+ *      right: number,
+ *      left: number
+ * }
+ * }} configuration 
+ * @return {boolean}
+ */
+function View(configuration) {
 
-function View(configuration = {}) {
+    if (!configuration)
+        throw new TypeError('[in-view] -> configuration parameter is required')
+
     let { visibility, axis, direction, target, offset } = configuration
 
 

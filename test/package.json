@@ -1,0 +1,25 @@
+{
+  "name": "test",
+  "version": "1.0.0",
+  "main": "dist/app.js",
+  "author": "Filip Kasarda",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "kasarda": "^2.2.2"
+  },
+  "scripts": {
+    "build": "webpack",
+    "start": "webpack --watch",
+    "test": "mocha"
+  },
+  "devDependencies": {
+    "clean-webpack-plugin": "^3.0.0",
+    "mocha": "^7.0.0",
+    "ts-loader": "^6.2.1",
+    "typescript": "^3.7.4",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10",
+    "webpack-merge": "^4.2.2"
+  }
+}

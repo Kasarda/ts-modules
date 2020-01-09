@@ -9,6 +9,11 @@
   *
   * In {Range} the third param is @type {boolean}
   * if value will be true number will be rounded
+  * @param {any} from
+  * @param {number} to
+  * @param {boolean} round Round random number
+  * @return {number}
+  * 
   *
 */
 

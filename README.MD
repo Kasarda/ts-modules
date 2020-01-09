@@ -1,4 +1,4 @@
-# Utilities for JavaScript, CSS and SASS
+# Placeholder for JavaScript, CSS and SASS
 
 <ul>
     <li><a href="#install-package">Install</a></li>
@@ -40,7 +40,8 @@ import {
     setStyles,
     animationLoop,
     minmax,
-    move
+    move,
+    generateID
 } from 'kasarda/common'
 /* 
 import rand from 'kasarda/common/rand'
@@ -150,6 +151,15 @@ minmax(0, 10, 15) // -> 10
 
 move([1, 2, 3], 0, 2) // -> [2, 3, 1]
 
+/**
+  *
+  * @function generateID
+  * Generate random string id
+  * @return {string}
+  *
+*/
+generateID() // -> r0fvlk8iuvk573eoap
+
 ```
 
 <h2 id="view">View</h2>
@@ -223,7 +233,7 @@ import {
     bezier,
     steps,
     spring,
-    easings
+    easing
 } from 'kasarda/easing'
 
 
@@ -236,7 +246,7 @@ steps(5)(.5) // new progress
 // spring(tension, friction, duration)(progress)
 spring(100, 20, 3000)(.5) // new progress
 
-// easing -> predefined bezier easings
+// easing -> predefined bezier easing
 /*
     {
     ease(progress)

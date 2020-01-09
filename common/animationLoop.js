@@ -2,6 +2,10 @@
   *
   * @function animationLoop
   * Creating requestAnimationFrame and get progress from duration
+  * @param {number} duration Duration of an loop
+  * @param {function({progress: number, runtime: number, remaining: number, runned: number, timestamp: number, requestID: number}):void} callback
+  * @param {function(number):void} done
+  * @return {number}
   *
 */
 function animationLoop(duration, callback, done) {

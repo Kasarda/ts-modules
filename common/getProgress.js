@@ -2,6 +2,11 @@
   *
   * @function getProgress
   * Get progress between 0 and 1 from specific value to specific value
+  * @param {number} from
+  * @param {number} to
+  * @param {number} value
+  * @param {boolean} outside
+  * @return {number}
   *
 */
 

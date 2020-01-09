@@ -6,7 +6,7 @@
   * Copyright (c) 2017-Present, Filip Kasarda
   *
   */
-import EventEmitter from './EventEmitter'
+const EventEmitter = require('./EventEmitter')
 
 
 class Part {
@@ -64,10 +64,10 @@ class Part {
     }
 }
 
-export default class Builder extends EventEmitter {
+class Builder extends EventEmitter {
     constructor(data) {
         super()
-        this._data = data
+        this._global = data
         this._parts = []
         this.id = this.generateID()
         this.plugin = {}
@@ -210,3 +210,5 @@ export default class Builder extends EventEmitter {
         data = {}
     }
 }
+
+module.exports = Builder

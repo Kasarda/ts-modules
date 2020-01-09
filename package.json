@@ -1,12 +1,12 @@
 {
   "name": "kasarda",
-  "version": "2.2.2",
+  "version": "3.0.0-beta",
   "author": {
     "name": "Filip Kasarda",
     "email": "fkasarda@gmail.com"
   },
   "license": "GPL-3.0",
-  "description": "Utilities for JavaScript, CSS and SASS",
+  "description": "Placeholder for JavaScript, CSS and SASS",
   "keywords": [
     "easing",
     "view",
@@ -31,7 +31,9 @@
     "event emitter",
     "form builder",
     "builder",
-    "move"
+    "move",
+    "generateID",
+    "validation"
   ],
   "repository": {
     "type": "git",

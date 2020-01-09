@@ -14,6 +14,7 @@ const setStyles = require('./common/setStyles')
 const animationLoop = require('./common/animationLoop')
 const minmax = require('./common/minmax')
 const move = require('./common/move')
+const generateID = require('./common/generateID')
 
 
 module.exports = {
@@ -24,5 +25,6 @@ module.exports = {
   setStyles,
   animationLoop,
   minmax,
-  move
+  move,
+  generateID
 }

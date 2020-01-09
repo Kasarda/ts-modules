@@ -4,7 +4,11 @@
   * Set style on element
   * This function handle css prefixs
   * and @param styles could be @type {plainObject} to set multiple styles
-  *
+  * @param {Element} elem
+  * @param {string|CSSStyleDeclaration} styles
+  * @param {any} value
+  * @return {void}
+  * 
 */
 
 
