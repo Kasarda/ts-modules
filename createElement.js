@@ -17,7 +17,7 @@ function parseSelector(selector) {
         delete arr[0]
         const value = arr.join('')
 
-        attr[name] = value.replace(/^"|"$/g, '')
+        attr[name] = value.replace(/^("|')|("|')$/g, '')
         return ''
     }).split(/(\.|#)/)
 
