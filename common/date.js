@@ -123,3 +123,5 @@ function getFirstChars(chars, count) {
     }
     return output
 }
+
+module.exports = formatDate
