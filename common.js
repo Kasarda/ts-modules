@@ -15,6 +15,7 @@ const animationLoop = require('./common/animationLoop')
 const minmax = require('./common/minmax')
 const move = require('./common/move')
 const generateID = require('./common/generateID')
+const date = require('./common/date')
 
 
 module.exports = {
@@ -26,5 +27,6 @@ module.exports = {
   animationLoop,
   minmax,
   move,
-  generateID
+  generateID,
+  date
 }
