@@ -1,5 +1,5 @@
 
-require('./composePath')
+require('./polyfill/composePath')
 
 if (!window.__KASARDA_ELEM_STORAGE__)
     window.__KASARDA_ELEM_STORAGE__ = { events: {}, plugins: {} }

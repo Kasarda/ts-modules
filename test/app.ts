@@ -1,4 +1,4 @@
-const Elem = require('../common/elem')
+const Elem = require('../elem')
 const $ = (...s: any) => new Elem(...s)
 
 Elem.plugin({
