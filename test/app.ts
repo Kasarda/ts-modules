@@ -1,30 +1,20 @@
-import Validation from '../validate'
+const Elem = require('../common/elem')
+const $ = (...s: any) => new Elem(...s)
 
-const btn: any = document.querySelector('button')
-const form: any = document.querySelector('form')
-
-
-const validation = new Validation({
-    text: {
-        min: 4
+Elem.plugin({
+    setColor() {
+        return (color: string) => {
+            this.target.forEach((target: any) => {
+                target.style.color = color
+            })
+        }
     }
 })
 
 
-btn.addEventListener('click', () => {
-
-})
-
-validation.on('validate', (e: any) => {
-    for (const name in e.controllers) {
-        const state = e.controllers[name]
-        if (state.valid) {
-            state.scheme.ref.parentElement.querySelector('span').innerHTML = ''
-            state.scheme.ref.style.background = 'green'
-        }
-        else {
-            state.scheme.ref.parentElement.querySelector('span').innerHTML = state.message
-            state.scheme.ref.style.background = 'red'
-        }
-    }
+const $body = $('body', window)
+console.log($body)
+$body.on('click', () => {
+    $body.setColor('red')
+    console.log($body)
 })
