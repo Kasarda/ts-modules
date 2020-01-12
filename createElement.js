@@ -258,7 +258,7 @@ createElement.__proto__.parse = function (obj) {
     return createElement(...[obj.selector, obj.props, obj.condition].filter(a => a !== undefined))
 }
 
-_createElement.__proto__.parseMarkup = function (markup, onlyElements = true) {
+createElement.__proto__.parseMarkup = function (markup, onlyElements = true) {
     const temp = document.createElement('div')
     temp.innerHTML = markup
     return Array.from(onlyElements ? temp.children : temp.childNodes)
