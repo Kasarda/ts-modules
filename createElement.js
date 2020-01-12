@@ -1,5 +1,15 @@
-function parseSelector(selector) {
+/**! @license
+  *
+  * This source code is licensed under the GNU GENERAL PUBLIC LICENSE found in the
+  * LICENSE file in the root directory of this source tree.
+  *
+  * Copyright (c) 2017-Present, Filip Kasarda
+  *
+  */
 
+
+
+function parseSelector(selector) {
     const attr = {}
     const selectorList = selector.replace(/\[([^\]]+)\]/g, (_, attrString) => {
         const arr = attrString.split(/=/)
@@ -7,23 +17,24 @@ function parseSelector(selector) {
         delete arr[0]
         const value = arr.join('')
 
-        attr[name] = value
+        attr[name] = value.replace(/^"|"$/g, '')
         return ''
     }).split(/(\.|#)/)
 
 
     const element = selectorList[0] || 'div'
-    let a = selectorList.filter((_, key) => key > 0).filter((_, key) => !(key % 2))
-    let b = selectorList.filter((_, key) => key > 0).filter((_, key) => key % 2)
+    const params = selectorList.filter((_, key) => key > 0)
+    let operators = params.filter((_, key) => !(key % 2))
+    let values = params.filter((_, key) => key % 2)
 
     const classNames = []
     let id
 
-    a.forEach((item, key) => {
+    operators.forEach((item, key) => {
         if (item === '.')
-            classNames.push(b[key])
+            classNames.push(values[key])
         else if (item === '#' && !id)
-            id = b[key]
+            id = values[key]
     })
 
     return {
@@ -34,7 +45,7 @@ function parseSelector(selector) {
     }
 }
 
-function promisify(value, cb) {
+function toPromise(value, cb) {
     if (value instanceof Promise)
         value.then(val => cb(val))
     else
@@ -55,7 +66,7 @@ function createElement(name = '', props = {
     appendTo: null,
     prependTo: null,
     ref: null,
-    appendFutureChilds: false
+    appendFutureChildren: true
 }, condition) {
 
 
@@ -87,7 +98,7 @@ function createElement(name = '', props = {
 
     if (typeof props === 'string' || props instanceof Promise) {
         if (element.tagName === 'IMG')
-            promisify(props, val => element.src = val)
+            toPromise(props, val => element.src = val)
         else
             props = { text: props }
     }
@@ -100,7 +111,7 @@ function createElement(name = '', props = {
     }
 
     if (props.className) {
-        promisify(props.className, value => {
+        toPromise(props.className, value => {
             let classes = value
 
             if (!(value instanceof Array)) {
@@ -121,10 +132,10 @@ function createElement(name = '', props = {
     }
 
     if (props.text && !props.html)
-        promisify(props.text, val => element.innerText = val)
+        toPromise(props.text, val => element.innerText = val)
 
     else if (props.html)
-        promisify(props.html, val => element.innerHTML = val)
+        toPromise(props.html, val => element.innerHTML = val)
 
     if (props.child) {
         if (!(props.child instanceof Array))
@@ -154,14 +165,14 @@ function createElement(name = '', props = {
         props.child
             .filter(child => child)
             .forEach(child => {
-                const childs = processChild([child])
-                childs.forEach(childElem => {
+                const children = processChild([child])
+                children.forEach(childElem => {
                     if (childElem instanceof Node)
                         element.appendChild(childElem)
                     else if (childElem instanceof Promise) {
                         const placeholder = new Comment('')
 
-                        if (props.appendFutureChilds !== true)
+                        if (props.appendFutureChildren !== true)
                             element.appendChild(placeholder)
 
 
@@ -171,14 +182,14 @@ function createElement(name = '', props = {
                             if (child instanceof Array)
                                 child.forEach(node => {
                                     if (node instanceof Node) {
-                                        if (props.appendFutureChilds !== true)
+                                        if (props.appendFutureChildren !== true)
                                             element.insertBefore(node, placeholder)
                                         else
                                             element.appendChild(node)
                                     }
                                 })
                             else if (child instanceof Node) {
-                                if (props.appendFutureChilds !== true)
+                                if (props.appendFutureChildren !== true)
                                     element.insertBefore(child, placeholder)
                                 else
                                     element.appendChild(child)
@@ -194,7 +205,7 @@ function createElement(name = '', props = {
     if (props.data) {
         for (const data in props.data) {
             const value = props.data[data]
-            promisify(value, val => element.dataset[data] = val)
+            toPromise(value, val => element.dataset[data] = val)
         }
     }
 
@@ -203,26 +214,26 @@ function createElement(name = '', props = {
             let value = props.style[style]
             if (typeof value === 'object' && 'value' in value)
                 value = value.value + (value.unit || '')
-            promisify(value, val => element.style[style] = val)
+            toPromise(value, val => element.style[style] = val)
         }
     }
 
     if (props.attr) {
         for (const attr in props.attr) {
             const value = props.attr[attr]
-            promisify(value, val => element.setAttribute(attr, val))
+            toPromise(value, val => element.setAttribute(attr, val))
         }
     }
 
     if (props.prop) {
         for (const prop in props.prop) {
             const value = props.prop[prop]
-            promisify(value, val => element[prop] = val)
+            toPromise(value, val => element[prop] = val)
         }
     }
 
     if (props.src)
-        promisify(props.src, src => element.src = src)
+        toPromise(props.src, src => element.src = src)
 
     if (props.on) {
         for (const prop in props.on) {
@@ -245,6 +256,12 @@ function createElement(name = '', props = {
 
 createElement.__proto__.parse = function (obj) {
     return createElement(...[obj.selector, obj.props, obj.condition].filter(a => a !== undefined))
+}
+
+_createElement.__proto__.parseMarkup = function (markup, onlyElements = true) {
+    const temp = document.createElement('div')
+    temp.innerHTML = markup
+    return Array.from(onlyElements ? temp.children : temp.childNodes)
 }
 
 module.exports = createElement
