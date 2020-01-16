@@ -1,6 +1,5 @@
 const EventEmitter = require('./EventEmitter')
-// file types
-// messages
+// TODO: Multple files
 
 class Validation extends EventEmitter {
     constructor(scheme = {}) {
@@ -17,10 +16,22 @@ class Validation extends EventEmitter {
         this.messages = {
             type: `Invalid type`,
             nullable: 'Value cannot be empty',
-            min: (value, scheme) => `Value underflow`,
-            max: (value, scheme) => `Value overflow`,
+            min(value, scheme) {
+                if (scheme.type === 'number')
+                    return `Value must be greater than or equal to ${scheme.min}`
+                return `Please lengthen this text to more characters then ${scheme.min - 1} (you are currently using ${value ? value.length : 0})`
+            },
+            max(value, scheme) {
+                if (scheme.type === 'number')
+                    return `Value must be lesser than or equal to ${scheme.max}`
+                return `Please shorten this text to less characters then ${scheme.max + 1} (you are currently using ${String(value || '').length})`
+            },
             pattern: 'Pattern mismatch',
-            required: 'Value is required',
+            required(_, scheme) {
+                if (scheme.type === File)
+                    return 'Please choose a file'
+                return 'The field is required'
+            },
         }
     }
 
@@ -41,7 +52,7 @@ class Validation extends EventEmitter {
                     return null
 
                 case 'file':
-                    if (controller.files.length)
+                    if (controller.files.length && controller.multiple)
                         return Array.from(controller.files)
                     return controller.files[0]
                 default:
@@ -71,10 +82,13 @@ class Validation extends EventEmitter {
 
             let type = null
             if ('autoProcess' in endScheme && endScheme.autoProcess) {
-                if (/^(text|textarea|color|password|email|search|tel|url)$/.test(controller.type))
+                // TODO: multiple select is string[]
+                if (/^(text|textarea|color|password|email|search|tel|url|radio)$/.test(controller.type) || controller.tagName === 'SELECT')
                     type = 'string'
                 else if (/^(number|range)$/.test(controller.type))
                     type = 'number'
+                else if (/^(checkbox)$/.test(controller.type))
+                    type = 'boolean'
                 else if (/^(date)$/.test(controller.type))
                     type = Date
                 else if (/^(file)$/.test(controller.type) && controller.multiple)
@@ -137,7 +151,7 @@ class Validation extends EventEmitter {
         return data
     }
 
-    extractFormData(formData) {
+    static extractFormData(formData) {
         const scheme = {}
         const data = {}
         for (const name in formData) {
@@ -147,10 +161,12 @@ class Validation extends EventEmitter {
         return { scheme, data }
     }
 
-    validate(objToValidate, include) {
+    validate(objToValidate, include, state = {}) {
         include = include && typeof include === 'string' ? [include] : include
         let valid = true
-        const globalEvent = {}
+        const globalEvent = {
+            state
+        }
         const finalStatus = {}
         const isForm = objToValidate instanceof HTMLFormElement
 
@@ -160,7 +176,7 @@ class Validation extends EventEmitter {
         let formData = null
         if (isForm) {
             formData = this.getFormData(objToValidate, include)
-            const extract = this.extractFormData(formData)
+            const extract = Validation.extractFormData(formData)
             schemes = extract.scheme
             data = extract.data
         }
@@ -180,20 +196,24 @@ class Validation extends EventEmitter {
                     name: prop
                 }
 
-                const isValidType = this.validateType(scheme, value)
-                const isValidRequired = this.validateRequired(scheme, value)
-                const isValidMin = this.validateMin(scheme, value)
-                const isValidMax = this.validateMax(scheme, value)
-                const isCustomValid = typeof scheme.validate === 'function' ? scheme.validate.call(this, event) : null
+                const isEmpty = !scheme.required && this.isNullAble(value)
+                const isIgnored = scheme.ref instanceof Element ? 'validationIgnore' in scheme.ref.dataset : false
+                const preventValidation = isIgnored || isEmpty
+
+                const isValidType = preventValidation || this.validateType(scheme, value)
+                const isValidRequired = isIgnored || this.validateRequired(scheme, value)
+                const isValidMin = preventValidation || this.validateMin(scheme, value)
+                const isValidMax = preventValidation || this.validateMax(scheme, value)
+                const isCustomValid = isIgnored || (typeof scheme.validate === 'function' ? scheme.validate.call(this, event) : null)
                 const isValidPattern = {}
 
                 if (scheme.pattern instanceof Array) {
                     scheme.pattern.forEach(pattern => {
-                        isValidPattern[pattern.name] = this.validatePattern(scheme, value, pattern)
+                        isValidPattern[pattern.name] = preventValidation || this.validatePattern(scheme, value, pattern)
                     })
                 }
                 else if (scheme.pattern instanceof RegExp) {
-                    isValidPattern.pattern = this.validatePattern(scheme, value, scheme.pattern)
+                    isValidPattern.pattern = preventValidation || this.validatePattern(scheme, value, scheme.pattern)
                 }
 
                 const validPatternState = {}
@@ -343,7 +363,9 @@ class Validation extends EventEmitter {
         const globalMessage = this.getMessage(scheme, value, 'pattern')
         const message = patternValue && patternValue.pattern ? patternValue.message || globalMessage : globalMessage
 
-        if (pattern instanceof RegExp && !pattern.test(value))
+        const isInvalid = patternValue.reverse ? pattern.test(value) : !pattern.test(value)
+
+        if (pattern instanceof RegExp && isInvalid)
             return new Error(message)
         return true
     }
