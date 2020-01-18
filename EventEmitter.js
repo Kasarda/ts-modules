@@ -7,7 +7,7 @@
   *
   */
 
-export default class EventEmitter {
+class EventEmitter {
     _events = {}
 
     _on(events, cb, name, once = false) {
@@ -71,3 +71,5 @@ export default class EventEmitter {
         }
     }
 }
+
+module.exports = EventEmitter
