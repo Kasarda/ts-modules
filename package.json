@@ -1,6 +1,6 @@
 {
   "name": "kasarda",
-  "version": "3.3.0-beta",
+  "version": "3.4.0-beta",
   "author": {
     "name": "Filip Kasarda",
     "email": "fkasarda@gmail.com"
@@ -35,7 +35,8 @@
     "generateID",
     "validation",
     "date",
-    "composePath"
+    "composePath",
+    "fileListener"
   ],
   "repository": {
     "type": "git",
