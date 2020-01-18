@@ -1,5 +1,5 @@
 const EventEmitter = require('./EventEmitter')
-// TODO: Multple files
+// TODO: Multiple files
 
 class Validation extends EventEmitter {
     constructor(scheme = {}) {
@@ -371,7 +371,7 @@ class Validation extends EventEmitter {
     }
 
     validateRequired(scheme, value) {
-        if (scheme.required && !value || (value instanceof Array && !value.length))
+        if (scheme.required && this.isNullAble(value) || (value instanceof Array && !value.length))
             return new Error(this.getMessage(scheme, value, 'required'))
         return true
     }
