@@ -1,20 +1,22 @@
-const Elem = require('../elem')
-const $ = (...s: any) => new Elem(...s)
+const FileListener = require('../fileListener')
 
-Elem.plugin({
-    setColor() {
-        return (color: string) => {
-            this.target.forEach((target: any) => {
-                target.style.color = color
-            })
-        }
-    }
+const btn: any = document.querySelector('#open')
+
+const file = new FileListener({
+    accept: '*',
+    size: 3000000,
+    drop: document.querySelectorAll('input, button'),
+    multiple: true
 })
 
+btn.addEventListener('click', () => {
+    file.open()
+})
 
-const $body = $('body', window)
-console.log($body)
-$body.on('click', () => {
-    $body.setColor('red')
-    console.log($body)
+file.on('change', (event: any) => {
+    file.trigger('error', { ...event, message: 'custom error' })
+})
+
+file.on('error', (event: any) => {
+    console.log(event)
 })
