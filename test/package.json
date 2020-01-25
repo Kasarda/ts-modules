@@ -6,7 +6,7 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "kasarda": "^2.2.2"
+    "kasarda": "^3.0.0"
   },
   "scripts": {
     "build": "webpack",
@@ -21,5 +21,9 @@
     "webpack": "^4.41.5",
     "webpack-cli": "^3.3.10",
     "webpack-merge": "^4.2.2"
-  }
+  },
+  "todo": [
+    "Create tests",
+    "Create new doc"
+  ]
 }
